@@ -3,9 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+require("@rails/ujs").start()
+require("@rails/activestorage").start()
+require("channels")
 
-Rails.start()
-ActiveStorage.start()
+import '../stylesheets/application'
+require('jquery')
