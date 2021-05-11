@@ -1,0 +1,9 @@
+ja:
+  app_name: Memo for Memos
+  app_name_initial: MFM
+  activerecord:
+    models:
+    attributes:
+  attributes:
+    created_at: 作成日時
+    updated_at: 更新日時
