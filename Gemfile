@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'annotate'
 gem 'config'
 gem 'slim-rails'
+gem 'sorcery'
 gem 'redis-rails'
 
 group :development, :test do

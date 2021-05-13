@@ -1,0 +1,13 @@
+- if logged_in?
+  p logged in
+  = link_to 'user#show', user_path(current_user)
+= form_with url: login_path, local: true do |f|
+  = f.label :login, 'username or email'
+  = f.text_field :login
+  = f.label :password
+  = f.password_field :password
+  = f.label :remember
+  = f.check_box :remember
+  = f.submit 'Log in'
+
+= link_to 'sign up', signup_path
