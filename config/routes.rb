@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   # 認証
   get     '/login',  to: "sessions#new"
   post    '/login',  to: "sessions#create"
-  delete  '/logout',  to: "sessions#destroy"
+  delete  '/logout', to: "sessions#destroy"
+  get     '/signup', to: "users#new"
 
-  # ユーザ登録
-  resources :users
+  # ユーザ関連
+  resources :users, param: :username, path: '/', only: %i[ show create update destroy ]
+  scope :profile do
+    get 'edit', to: "users#edit", as: 'edit_user'
+  end
 end

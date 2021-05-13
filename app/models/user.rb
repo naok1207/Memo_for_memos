@@ -20,12 +20,19 @@
 #
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  VALID_USERNAME_NGWORD = /login|logout|signup/
   VALID_USERNAME_REGEX = /\A[A-Za-z][A-Za-z0-9]*/i
   VALID_EMAIL_REGEX = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/
   before_save { self.email = email.downcase }
-  validates :username, presence: true, uniqueness: true, format: { with: VALID_USERNAME_REGEX }, length: { minimum: 4, maximum: 30 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 4, maximum: 30 }
+  validates_format_of :username, with: VALID_USERNAME_REGEX
+  validates_format_of :username, without: VALID_USERNAME_NGWORD
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 8, maximum: 24 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+
+  def to_param
+    username
+  end
 end
