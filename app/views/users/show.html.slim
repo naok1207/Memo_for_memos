@@ -1,0 +1,7 @@
+h1 Users#show
+p Find me in app/views/users/show.html.slim
+
+p= @user.username
+p= @user.email
+
+= link_to 'log out', logout_path, method: :delete

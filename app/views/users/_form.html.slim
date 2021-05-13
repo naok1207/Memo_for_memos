@@ -1,0 +1,13 @@
+= form_with model: @user, local: true do |f|
+  - if @user.errors.any?
+    - @user.errors.full_messages.each do |message|
+      li= message
+  = f.label :username
+  = f.text_field :username
+  = f.label :email
+  = f.email_field :email
+  = f.label :password
+  = f.password_field :password
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+  = f.submit
