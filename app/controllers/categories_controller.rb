@@ -1,11 +1,12 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = current_user.categories.main.recent
+    @categories = current_user.categories.main.name_asc
   end
 
   def show
     @category = current_user.categories.find_by!(name: params[:name])
     @categories = @category.children
+    @memos = @category.memos.title_asc
   rescue
     redirect_to categories_path, alert: "not found #{params[:name]} category"
   end
@@ -26,7 +27,7 @@ class CategoriesController < ApplicationController
                       parent = current_user.categories.find(category_params[:parent_id])
                       parent.children.order(name: :asc)
                     else
-                      current_user.categories.where(parent_id: nil).recent
+                      current_user.categories.where(parent_id: nil).name_asc
                     end
     end
   end
@@ -44,6 +45,8 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = current_user.categories.find_by!(name: params[:name])
+    @category.children_destroy_all
+    @category.memos.destroy_all
     @category.destroy!
     redirect_to @category.parent.present? ? @category.parent : categories_path
   end

@@ -1,0 +1,8 @@
+= form_with model: [@category, @memo], local: false do |f|
+  #memo-title
+    = f.label :title
+    = f.text_field :title
+  #memo-body
+    = f.label :body
+    = f.text_area :body, size: "20x10"
+  = f.submit
