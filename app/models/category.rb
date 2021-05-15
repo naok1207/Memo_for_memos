@@ -27,11 +27,22 @@ class Category < ApplicationRecord
   has_many :children, class_name: 'Category', foreign_key: 'parent_id', dependent: :destroy
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
-  scope :recent, -> { order name: :asc }
+  has_many :memos, dependent: :nullify
+
+  scope :name_asc, -> { order name: :asc }
   # 最上位階層のカテゴリの絞り込み
   scope :main,   -> { where parent_id: nil }
 
   def to_param
     name
+  end
+
+  # 子要素の全てのデータを残さずに削除する
+  def children_destroy_all
+    self.children.each do |category|
+      category.children_destroy_all
+    end
+    self.children.destroy_all
+    self.memos.destroy_all
   end
 end

@@ -20,7 +20,7 @@
 #
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  VALID_USERNAME_NGWORD = /login|logout|signup|categories|category/
+  VALID_USERNAME_NGWORD = /login|logout|signup|categories|category|memos/
   VALID_USERNAME_REGEX = /\A[A-Za-z][A-Za-z0-9]*/i
   VALID_EMAIL_REGEX = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/
   before_save { self.email = email.downcase }
@@ -33,6 +33,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   has_many :categories, dependent: :destroy
+  has_many :memos, dependent: :nullify
 
   def to_param
     username

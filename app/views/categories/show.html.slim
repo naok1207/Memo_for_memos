@@ -9,7 +9,12 @@ hr
 li= link_to "edit Category", edit_category_path(@category), remote: true
 li= link_to "delete Category", category_path(@category), method: :delete
 li= link_to "new Category", new_category_path(@category), remote: true
+li= link_to "new Memo", new_category_memo_path(@category), remote: true
+#new-memo
 hr
 Category children
 #categories-list
   = render @categories
+Category memos
+#memos-list
+  = render @memos

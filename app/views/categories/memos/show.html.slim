@@ -1,0 +1,7 @@
+Memo Show
+hr
+li= link_to "back", category_path(@category)
+li= link_to "edit", edit_category_memo_path(@category, @memo), remote: true
+hr
+#memo-container
+  = render 'memo_container'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_101106) do
+ActiveRecord::Schema.define(version: 2021_05_15_145152) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2021_05_14_101106) do
     t.index ["name", "user_id"], name: "index_categories_on_name_and_user_id", unique: true
     t.index ["parent_id"], name: "index_categories_on_parent_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "memos", id: { type: :string, limit: 20 }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body"
+    t.bigint "category_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_memos_on_category_id"
+    t.index ["user_id"], name: "index_memos_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -38,4 +49,6 @@ ActiveRecord::Schema.define(version: 2021_05_14_101106) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "memos", "categories"
+  add_foreign_key "memos", "users"
 end
