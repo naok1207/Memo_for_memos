@@ -1,0 +1,15 @@
+Category Show
+p#category-name name: #{@category.name}
+hr
+#category-edit-field
+- if @category.parent.present?
+  li= link_to "back", category_path(@category.parent)
+- else
+  li= link_to "back", categories_path
+li= link_to "edit Category", edit_category_path(@category), remote: true
+li= link_to "delete Category", category_path(@category), method: :delete
+li= link_to "new Category", new_category_path(@category), remote: true
+hr
+Category children
+#categories-list
+  = render @categories

@@ -1,0 +1,8 @@
+Category Index
+
+li= link_to "user page", user_path(current_user)
+li= link_to "new Category", new_category_path, remote: true
+hr
+Category children
+#categories-list
+  = render @categories

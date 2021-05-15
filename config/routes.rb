@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   delete  '/logout', to: "sessions#destroy"
   get     '/signup', to: "users#new"
 
+  # カテゴリ
+  resources :categories, param: :name
+
   # ユーザ関連
   resources :users, param: :username, path: '/', only: %i[ show create update destroy ]
   scope :profile do
