@@ -9,3 +9,5 @@ require("channels")
 
 import '../stylesheets/application'
 require('jquery')
+
+import '../javascripts/bootstrap_js_files.js'
