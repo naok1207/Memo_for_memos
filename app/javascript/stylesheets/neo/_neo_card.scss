@@ -1,0 +1,14 @@
+$card-bg: white;
+$card-height: 100px;
+$card-width: 100px;
+
+@mixin neo_card() {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
+  height: $card-height;
+  width: $card-width;
+  word-wrap: break-word;
+  // background-color: $card-bg;
+  background-clip: border-box;
+}

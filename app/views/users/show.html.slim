@@ -1,11 +1,13 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
-
-p= @user.username
-p= @user.email
-
-li= link_to 'category index', categories_path
-li= link_to 'memo index', memos_path
-li= link_to 'edit', edit_user_path
-li= link_to 'leave', user_path, method: :delete
-li= link_to 'log out', logout_path, method: :delete
+.d-flex
+  .profile.mt-5.ms-5
+    .neo.rounded-circle.profile-image
+      = image_pack_tag "media/images/icon-person-male.svg", class: "profile-image-svg", size: "100x100"
+    .profile-detail.mt-4
+      p.profile-username= @user.username
+      p.profile-body
+        | texttexttexttexttexttexttexttexttexttexttexttexttexttext
+      ul.profile-list
+        li.profile-list-item= link_to '編集', edit_user_path, class: "neo neo-btn profile-link"
+        li.profile-list-item= link_to '退会', user_path, method: :delete, class: "neo neo-btn profile-link"
+        li.profile-list-item= link_to 'ログアウト', logout_path, method: :delete, class: "neo neo-btn profile-link"
+  .dashboard.neo-sink.vh-65.m-5.col

@@ -1,8 +1,11 @@
-= form_with model: [@category, @memo], local: false do |f|
-  #memo-title
-    = f.label :title
-    = f.text_field :title
-  #memo-body
-    = f.label :body
-    = f.text_area :body, size: "20x10"
-  = f.submit
+= form_with model: [@category, @memo], local: false, class: 'memo-form' do |f|
+  ul.memos-list.w-100
+    li.memo-title.w-100
+      #memo-title.neo.w-100
+        = image_pack_tag "media/images/icon-file.svg", class: "memo-name-svg", size: "20x20"
+        /= f.label :title
+        = f.text_field :title, class: 'neo-sink'
+  .mt-7.ms-2.neo.min-h-90.max-h-90
+    #memo-body.memo-body
+      = f.text_area :body, class: 'neo-sink'
+      = f.submit class: 'neo neo-btn d-block ms-auto py-2 px-4'

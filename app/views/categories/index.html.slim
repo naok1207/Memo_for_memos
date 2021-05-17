@@ -1,9 +1,13 @@
-Category Index
-
-li= link_to "user page", user_path(current_user)
-li= link_to "new Category", new_category_path, remote: true
-#new-category
-hr
-Category children
-#categories-list
-  = render @categories
+.d-flex
+  .sidebar.col-2.mt-3.mx-2.vh-70
+    = render 'layouts/sidebar'
+  .categories.col
+    ul.categories-list
+      li.categories-list-item= link_to new_category_path, remote: true, class: 'neo neo-btn category-link' do
+        = image_pack_tag "media/images/icon-folder-new.svg", class: "categories-svg", size: "20x20"
+      li
+        #new-category
+    .mt-7.ms-2.neo.min-h-90.max-h-90
+      .mx-auto
+        #categories-list.neo-card-list
+          = render @categories
