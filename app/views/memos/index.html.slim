@@ -1,5 +1,5 @@
-Memo Index
-
-li= link_to "category index", categories_path
-hr
-= render @memos
+.categories.col
+  .mt-7.ms-2.neo.min-h-90.max-h-90
+    .mx-auto
+      #memos-list.neo-card-list
+        = render @memos

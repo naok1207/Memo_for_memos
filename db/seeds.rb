@@ -5,3 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.find_or_create_by(username: "hoge") do |user|
+  user.email = "hoge@hoge.hoge"
+  user.password = "hogehoge"
+  user.password_confirmation = "hogehoge"
+end
+
+10.times do |i|
+  new_category = user.categories.create(name: "category-#{i}", parent_id: nil)
+  puts 'create category ' + new_category.name
+  5.times do |j|
+    memo = new_category.memos.new(title: "memo-#{i}-#{j}", body: nil, user_id: user.id)
+    memo.save
+    puts 'create memo '+ memo.title
+  end
+end
+
+user.categories.main.each do |category|
+  10.times do |i|
+    new_category = category.children.create(name: "#{category.name}-#{i}", user_id: user.id, parent_id: category.id)
+    puts 'create category ' + new_category.name
+    5.times do |j|
+      memo = new_category.memos.create(title: "memo-#{j}", body: "memo-#{j} detail body")
+      puts 'create memo ' + memo.title
+  end
+  end
+end

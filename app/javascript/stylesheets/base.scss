@@ -1,0 +1,76 @@
+
+// base -----------------------------------
+// $blocks: (
+//   flex: flex,
+//   block: block,
+//   none: none
+// );
+// @each $block, $value in $blocks {
+//   .d-#{$block} {
+//     display: $value;
+//   }
+// }
+
+
+$widths: (10: 10%, 15: 15%, 20: 20%, 25: 25%, 30: 30%, 35: 35%, 40: 40%, 45: 45%, 50: 50%,
+          60: 60%, 65: 65%, 70: 70%, 75: 75%, 80: 80%, 85: 85%, 90: 90%, 95: 95%, 100: 100%);
+@each $width, $value in $widths {
+  .w-#{$width} {
+    width: #{$value};
+  }
+  .vw-#{$width} {
+    width: #{$width}vw;
+  }
+}
+$heights: (10: 10%, 15: 15%, 20: 20%, 25: 25%, 30: 30%, 35: 35%, 40: 40%, 45: 45%, 50: 50%,
+           60: 60%, 65: 65%, 70: 70%, 75: 75%, 80: 80%, 85: 85%, 90: 90%, 95: 95%, 100: 100%);
+@each $height, $value in $heights {
+  .h-#{$height} {
+    height: #{$value};
+  }
+  .min-h-#{$height} {
+    min-height: #{$value};
+  }
+  .vh-#{$height} {
+    height: #{$height}vh;
+  }
+  .min-vh-#{$height} {
+    min-height: #{$height}vh;
+  }
+  .max-vh-#{$height} {
+    max-height: #{$height}vh;
+  }
+}
+
+// $margins: (
+//   1: 10px,
+//   2: 20px,
+//   3: 30px,
+//   4: 40px,
+//   5: 50px
+// );
+// @each $margin, $value in $margins {
+//   .m-#{$margin} {
+//     margin: $value;
+//   }
+//   .mt-#{$margin} {
+//     margin-top: $value;
+//   }
+//   .mr-#{$margin} {
+//     margin-right: $value;
+//   }
+//   .mb-#{$margin} {
+//     margin-bottom: $value;
+//   }
+//   .ml-#{$margin} {
+//     margin-left: $value;
+//   }
+//   .mtb-#{$margin} {
+//     margin-top: $value;
+//     margin-bottom: $value;
+//   }
+//   .mlr-#{$margin} {
+//     margin-right: $value;
+//     margin-left: $value;
+//   }
+// }

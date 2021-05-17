@@ -1,5 +1,5 @@
 / local に true or false を指定することで同期, 非同期選択
-= form_with model: @category, local: local do |f|
-  = f.text_field :name
+= form_with model: @category, local: local, class: 'neo' do |f|
+  = f.text_field :name, class: 'neo-sink'
   = f.hidden_field :parent_id, value: @category.parent_id
-  = f.submit
+  = f.submit class: 'neo neo-btn'

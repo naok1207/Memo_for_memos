@@ -1,0 +1,52 @@
+@import './theme_color';
+
+$neo-color-t: #FFFFFF;
+$neo-color-b: #D1CDC7;
+$default-color: #9fbaf3;
+
+@mixin active($color) {
+  box-shadow: inset -5px -5px 10px $neo-color-t,
+              inset 5px 5px 10px $neo-color-b;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+@mixin hover($color) {
+  &:hover {
+    border: 1px solid $color;
+  }
+}
+
+@mixin button_variant($color) {
+  @include hover($color);
+  &:active,
+  &.active {
+    @include active($color)
+  }
+}
+
+@mixin neo_button {
+  border: 1px solid rgba(0, 0, 0, 0);
+
+  @include hover($default-color);
+
+  // &:focus,
+  // &.focus {
+
+  // }
+
+  // &.disabled,
+  // &:disabled {
+
+  // }
+
+  &:active,
+  &.active {
+    @include active($default-color);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .neo-#{$color} {
+    @include button_variant($color);
+  }
+}

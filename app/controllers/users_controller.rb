@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'layouts/basic_auth', only: %i[ new edit ]
+
   def show
     @user = User.find_by!(username: params[:username])
   rescue

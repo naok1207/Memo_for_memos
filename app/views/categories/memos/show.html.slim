@@ -1,7 +1,5 @@
-Memo Show
-hr
-li= link_to "back", category_path(@category)
-li= link_to "edit", edit_category_memo_path(@category, @memo), remote: true
-hr
-#memo-container
-  = render 'memo_container'
+.d-flex
+  .sidebar.col-2.mt-3.mx-2.vh-70
+    = render 'layouts/sidebar'
+  #memos.memos.col
+    = render 'memo_container'

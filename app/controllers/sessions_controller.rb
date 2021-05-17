@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'layouts/basic_auth', only: :new
+
   def new; end
 
   def create

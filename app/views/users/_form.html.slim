@@ -1,13 +1,21 @@
-= form_with model: @user, local: true do |f|
-  - if @user.errors.any?
-    - @user.errors.full_messages.each do |message|
-      li= message
-  = f.label :username
-  = f.text_field :username
-  = f.label :email
-  = f.email_field :email
-  = f.label :password
-  = f.password_field :password
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
-  = f.submit
+.d-flex.vh-95.justify-content-center.align-items-center
+  = form_with model: @model, local: true, class: 'auth-form neo position-relative' do |f|
+    - if !new
+      = link_to "< back", current_user, class: 'd-block position-absolute top-0 start-25 px-0'
+    .form-group
+      = f.label :username
+      = f.text_field :username, class: 'neo-sink'
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: 'neo-sink'
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: 'neo-sink'
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, class: 'neo-sink'
+    - if new
+      = f.submit 'Sign up', class: 'neo neo-btn'
+      = link_to 'log in', login_path, class: "auth-link"
+    - else
+      = f.submit 'update', class: 'neo neo-btn'
