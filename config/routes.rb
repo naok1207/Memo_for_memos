@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   end
   resources :memos, only: %i[ index ]
 
+  namespace :api do
+    resources :memos, only: %i[ create ]
+  end
+
   # ユーザ関連
   resources :users, param: :username, path: '/', only: %i[ show create update destroy ]
   scope :profile do
