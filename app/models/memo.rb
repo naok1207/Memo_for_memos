@@ -25,6 +25,8 @@ class Memo < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :user, optional: true
 
+  validates :title, presence: true
+
   scope :title_asc, -> { order title: :asc }
 
   # ランダム文字列のidを生成
