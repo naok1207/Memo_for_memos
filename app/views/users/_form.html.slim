@@ -1,5 +1,5 @@
 .d-flex.vh-95.justify-content-center.align-items-center
-  = form_with model: @model, local: true, class: 'auth-form neo position-relative' do |f|
+  = form_with model: @user, local: true, class: 'auth-form neo position-relative' do |f|
     - if !new
       = link_to "< back", current_user, class: 'd-block position-absolute top-0 start-25 px-0'
     .form-group
