@@ -1,10 +1,12 @@
 - @user = @user.present? ? @user : current_user
 table
-  .d-flex
-    div= @date.strftime("%Y年 %-m月")
+  .d-flex.mb-2
+    div.d-flex
+      =link_to @date.strftime("%Y年"), user_calender_path(@user, year: @date.year), class: 'm-0 ms-2 py-0 px-1 neo neo-btn'
+      =link_to @date.strftime("%-m月"), user_calender_path(@user, year: @date.year, month: @date.month), class: 'm-0 ms-1 py-0 px-1 neo neo-btn'
     .ms-auto
-      = link_to "<", user_calender_ajax_path(@user, change: @changed.to_i - 1), remote: true
-      = link_to ">", user_calender_ajax_path(@user, change: @changed.to_i + 1), remote: true
+      = link_to "<", user_calender_ajax_path(@user, change: @changed.to_i - 1), remote: true, class: 'm-0 me-3 p-1 neo neo-btn'
+      = link_to ">", user_calender_ajax_path(@user, change: @changed.to_i + 1), remote: true, class: 'm-0 me-3 p-1 neo neo-btn'
   tr
     - t('date.abbr_day_names').each do |day_name|
       td= day_name
