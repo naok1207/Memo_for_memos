@@ -1,0 +1,7 @@
+.d-flex
+  .sidebar.col-2.mt-3.mx-2.vh-70
+    = render 'layouts/sidebar'
+  .mt-7.ms-2.neo.min-h-90.max-h-90
+      .mx-auto
+        #memos-list.neo-card-list
+          = render partial: 'memos/memo', collection: @memos

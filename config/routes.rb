@@ -19,7 +19,18 @@ Rails.application.routes.draw do
   end
 
   # ユーザ関連
-  resources :users, param: :username, path: '/', only: %i[ show create update destroy ]
+  resources :users, param: :username, path: '/', only: %i[ show create update destroy ] do
+    # スコープでまとめるべき？
+    get '/calender/:year(/:month(/:day))', to: 'users/calenders#calender', as: 'calender',
+      constraints: lambda { |request|
+        request.params[:year].to_s.match?(/\d{4}/) and
+        (request.params[:month].nil? or request.params[:month].to_i.in?(1..12)) and
+        (request.params[:day].nil? or request.params[:day].to_i.in?(1..31))
+      }
+
+    get 'calender/ajax/:change', to: 'users/calenders#ajax', as: 'calender_ajax'
+  end
+
   scope :profile do
     get 'edit', to: "users#edit", as: 'edit_user'
   end
