@@ -1,3 +1,4 @@
+- @user = @user.present? ? @user : current_user
 table
   tr
     - t('date.abbr_day_names').each do |day_name|
@@ -6,7 +7,7 @@ table
     - if date.wday == 0
       tr
     - if @user.memos.where(updated_at: date.in_time_zone.all_day).present?
-      td= link_to date.day, calender_memos_path(year: date.year, month: date.month, day: date.day), class: 'neo neo-btn'
+      td= link_to date.day, user_calender_path(@user, year: date.year, month: date.month, day: date.day), class: 'neo neo-btn'
     - else
       td= date.day
     - if date.wday == 6

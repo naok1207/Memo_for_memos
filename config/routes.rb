@@ -12,19 +12,22 @@ Rails.application.routes.draw do
   resources :categories, param: :name do
     resources :memos, controller: 'categories/memos', only: %i[ show new create edit update destroy]
   end
-  resources :memos, only: %i[ index ] do
-    get '/calender/:year(/:month(/:day))', to: 'memos#calender', on: :collection, as: 'calender',
-      constraints: lambda { |request|
-        request.params[:year].to_s.match?(/\d{4}/) and request.params[:month].to_i.in?(0..12) and request.params[:day].to_i.in?(0..31)
-      }
-  end
+  resources :memos, only: %i[ index ]
 
   namespace :api do
     resources :memos, only: %i[ create ]
   end
 
   # ユーザ関連
-  resources :users, param: :username, path: '/', only: %i[ show create update destroy ]
+  resources :users, param: :username, path: '/', only: %i[ show create update destroy ] do
+    get '/calender/:year(/:month(/:day))', to: 'users/calenders#calender', as: 'calender',
+      constraints: lambda { |request|
+        request.params[:year].to_s.match?(/\d{4}/) and
+        (request.params[:month].nil? or request.params[:month].to_i.in?(1..12)) and
+        (request.params[:day].nil? or request.params[:day].to_i.in?(1..31))
+      }
+  end
+
   scope :profile do
     get 'edit', to: "users#edit", as: 'edit_user'
   end
