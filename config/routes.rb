@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   resources :categories, param: :name do
     resources :memos, controller: 'categories/memos', only: %i[ show new create edit update destroy]
   end
-  resources :memos, only: %i[ index ]
+  resources :memos, only: %i[ index ] do
+    get '/calender/:year(/:month(/:day))', to: 'memos#calender', on: :collection, as: 'calender',
+      constraints: lambda { |request|
+        request.params[:year].to_s.match?(/\d{4}/) and request.params[:month].to_i.in?(0..12) and request.params[:day].to_i.in?(0..31)
+      }
+  end
 
   namespace :api do
     resources :memos, only: %i[ create ]

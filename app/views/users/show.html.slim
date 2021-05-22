@@ -6,8 +6,12 @@
       p.profile-username= @user.username
       p.profile-body
         | texttexttexttexttexttexttexttexttexttexttexttexttexttext
-      ul.profile-list
-        li.profile-list-item= link_to '編集', edit_user_path, class: "neo neo-btn profile-link"
-        li.profile-list-item= link_to '退会', user_path, method: :delete, class: "neo neo-btn profile-link"
-        li.profile-list-item= link_to 'ログアウト', logout_path, method: :delete, class: "neo neo-btn profile-link"
+      - if logged_in? && @user == current_user
+        ul.profile-list
+          li.profile-list-item= link_to '編集', edit_user_path, class: "neo neo-btn profile-link"
+          li.profile-list-item= link_to '退会', user_path, method: :delete, class: "neo neo-btn profile-link"
+          li.profile-list-item= link_to 'ログアウト', logout_path, method: :delete, class: "neo neo-btn profile-link"
+      - else
+        .neo.calender
+          = render 'users/calender'
   .dashboard.neo-sink.vh-65.m-5.col
