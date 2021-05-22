@@ -12,6 +12,11 @@ class Users::CalendersController < ApplicationController
     end
   end
 
+  def ajax
+    @user = User.find_by!(username: params[:user_username])
+    generate_calender(change: params[:change].to_i)
+  end
+
   private
   def select_day
     date = Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)

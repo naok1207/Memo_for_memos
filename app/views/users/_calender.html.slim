@@ -1,5 +1,10 @@
 - @user = @user.present? ? @user : current_user
 table
+  .d-flex
+    div= @date.strftime("%Y年 %-m月")
+    .ms-auto
+      = link_to "<", user_calender_ajax_path(change: @changed.to_i - 1), remote: true
+      = link_to ">", user_calender_ajax_path(change: @changed.to_i + 1), remote: true
   tr
     - t('date.abbr_day_names').each do |day_name|
       td= day_name
