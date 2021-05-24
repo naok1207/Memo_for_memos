@@ -17,6 +17,10 @@ nav
     li.header-list-item= link_to "#", class: "header-link neo neo-btn" do
       = image_pack_tag "media/images/icon-assessment.svg", size: '30x30', class: 'svg'
     li.header-list-item= link_to "#", class: "header-link neo neo-btn" do
+      = image_pack_tag "media/images/icon-search.svg", size: '30x30', class: 'svg'
+    li.header-list-item= link_to user_tags_path(current_user), class: "header-link neo neo-btn" do
+      = image_pack_tag "media/images/icon-tag.svg", size: '30x30', class: 'svg'
+    li.header-list-item= link_to "#", class: "header-link neo neo-btn" do
       = image_pack_tag "media/images/icon-settings.svg", size: '30x30', class: 'svg'
   - if logged_in?
     = link_to current_user, class: "neo neo-hover header-user-link rounded-circle" do

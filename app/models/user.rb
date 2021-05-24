@@ -22,7 +22,7 @@
 #
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  VALID_USERNAME_NGWORD = /login|logout|signup|categories|category|memos/
+  VALID_USERNAME_NGWORD = /login|logout|signup|categories|category|memos|tags/
   VALID_USERNAME_REGEX = /\A[A-Za-z][A-Za-z0-9]*/i
   VALID_EMAIL_REGEX = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/
   before_save { self.email = email.downcase }
@@ -40,6 +40,10 @@ class User < ApplicationRecord
 
   def to_param
     username
+  end
+
+  def tags
+    self.memos.map{ |memo| memo.tags }.flatten
   end
 
   private
