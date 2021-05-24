@@ -14,12 +14,15 @@ Rails.application.routes.draw do
   end
   resources :memos, only: %i[ index ]
 
+  resources :tags, param: :name, only: %i[ index show ]
+
   namespace :api do
     resources :memos, only: %i[ create ]
   end
 
   # ユーザ関連
   resources :users, param: :username, path: '/', only: %i[ show create update destroy ] do
+    resources :tags, param: :name, controller: 'users/tags', only: %i[ index show ]
     # スコープでまとめるべき？
     get '/calender/:year(/:month(/:day))', to: 'users/calenders#calender', as: 'calender',
       constraints: lambda { |request|

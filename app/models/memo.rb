@@ -24,6 +24,8 @@ class Memo < ApplicationRecord
   before_create :generate_hex_id
   belongs_to :category, optional: true
   belongs_to :user, optional: true
+  has_many :memo_tag_relations
+  has_many :tags, through: :memo_tag_relations
 
   validates :title, presence: true
 
@@ -34,6 +36,21 @@ class Memo < ApplicationRecord
     self.id = loop do
       hex_id = SecureRandom.hex(10)
       break hex_id unless self.class.exists?(id: hex_id)
+    end
+  end
+
+  def save_tags(save_tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - save_tags
+    new_tags = save_tags - current_tags
+
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old_name)
+    end
+
+    new_tags.each do |new_name|
+      memo_tag = Tag.find_or_create_by(name: new_name)
+      self.tags << memo_tag
     end
   end
 end

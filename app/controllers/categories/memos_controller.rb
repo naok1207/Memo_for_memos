@@ -22,12 +22,15 @@ class Categories::MemosController < ApplicationController
   def edit
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
+    @tag_list = @memo.tags.pluck(:name).join(' ')
   end
 
   def update
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
     @memo.update(memo_params)
+    tag_list = params[:memo][:tags_ids].split
+    @memo.save_tags(tag_list)
   end
 
   def destroy
