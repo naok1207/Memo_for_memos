@@ -1,4 +1,6 @@
 class Users::CalendersController < ApplicationController
+  before_action :generate_calender
+
   def calender
     @user = User.find_by!(username: params[:user_username])
     if params[:day].present?

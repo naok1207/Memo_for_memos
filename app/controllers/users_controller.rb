@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: %i[ edit update destroy ]
+  before_action :generate_calender, only: :show
   layout 'layouts/basic_auth', only: %i[ new edit ]
 
   def show

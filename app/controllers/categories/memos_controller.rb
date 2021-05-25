@@ -1,5 +1,6 @@
 class Categories::MemosController < ApplicationController
   before_action :require_login
+  before_action :generate_calender, only: :show
 
   def show
     @category = current_user.categories.find_by!(name: params[:category_name])
