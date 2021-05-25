@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: %i[ edit update destroy ]
   layout 'layouts/basic_auth', only: %i[ new edit ]
 
   def show

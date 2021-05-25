@@ -1,4 +1,6 @@
 class Categories::MemosController < ApplicationController
+  before_action :require_login
+
   def show
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])

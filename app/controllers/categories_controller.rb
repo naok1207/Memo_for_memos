@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :require_login
+
   def index
     @categories = current_user.categories.main.name_asc
   end
