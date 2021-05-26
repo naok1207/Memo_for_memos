@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_path
   end
+
+  def already_logged_in
+    redirect_to categories_path if logged_in?
+  end
 end

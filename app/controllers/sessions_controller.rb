@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   before_action :require_login, only: :destroy
-  layout 'layouts/basic_auth', only: :new
+  before_action :already_logged_in, only: :new
+  layout 'layouts/basic_auth'
 
   def new; end
 

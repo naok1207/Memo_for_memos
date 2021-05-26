@@ -2,7 +2,7 @@
   = form_with url: login_path, local: true, class: 'auth-form neo ' do |f|
     .form-group
       = f.label :login, 'username or email'
-      = f.text_field :login, class: 'neo-sink', value: "username or email"
+      = f.text_field :login, class: 'neo-sink'
     .form-group
       = f.label :password
       = f.password_field :password, class: 'neo-sink'

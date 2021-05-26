@@ -18,6 +18,10 @@ body {
   background-color: rgba(230,232,238, 1);
 }
 
+a {
+  white-space: nowrap;
+}
+
 .svg {
   text-align: center;
   transform: translateY(0.6rem);
