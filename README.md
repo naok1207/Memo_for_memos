@@ -17,7 +17,7 @@ ruby: 3.0.0
 |A|カテゴリ更新|PATCH|/categories/:name|categories#update|
 |A|カテゴリ削除|DELETE|/categories/:name|categories#destroy|
 |A|メモ作成画面|GET|/categories/:cateogry_name/memos/new|memos#new|
-|A|メモ作成|POST|/categories/:cateogry_name/memos/create|memos#create|
+|A|メモ作成|POST|/categories/:cateogry_name/memos|memos#create|
 |A|メモ詳細|GET|/categories/:cateogry_name/memos/:id|memos#show|
 |A|メモ編集画面|GET|/categories/:cateogry_name/memos/:id/edit|memos#edit|
 |A|メモ更新|PATCH|/categories/:cateogry_name/memos/:id|memos#update|
@@ -27,7 +27,7 @@ ruby: 3.0.0
 |A|メモ一覧|GET|/memos|memos#index|
 ||解決メモ一覧|GET|/memos/solved|memos/solve#solved|
 ||未解決メモ一覧|GET|/memos/unsolved|memos/solve#unsolved|
-|A|メモ作成(api)|POST|/api/memos/create|api/memos#create|
+|A|メモ作成(api)|POST|/api/memos|api/memos#create|
 ||||
 ||**タグ**||
 |A|タグ一覧|GET|/tags|tags#index|
