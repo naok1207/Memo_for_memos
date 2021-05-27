@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  before_action :require_login
+  before_action :generate_calender, only: %i[ index show update ]
+
   def index
     @categories = current_user.categories.main.name_asc
   end
