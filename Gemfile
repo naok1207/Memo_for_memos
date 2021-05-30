@@ -31,6 +31,7 @@ gem 'config'
 gem 'foreman'
 gem 'slim-rails'
 gem 'sorcery'
+gem 'redcarpet'
 gem 'redis-rails'
 
 group :development, :test do
