@@ -16,13 +16,22 @@ Rails.application.routes.draw do
 
   resources :tags, param: :name, only: %i[ index show ]
 
+  namespace :user_settings do
+    resource :profile, only: %i[ show update ]
+    resource :avatar, only: %i[ update destroy ] do
+      post 'confirm', as: 'confirm'
+    end
+  end
+
   namespace :api do
     resources :memos, only: %i[ create ]
   end
 
+
   # ユーザ関連
-  resources :users, param: :username, path: '/', only: %i[ show create update destroy ] do
+  resources :users, param: :username, path: '/', only: %i[ show create edit update destroy ] do
     resources :tags, param: :name, controller: 'users/tags', only: %i[ index show ]
+    resource :profile, only: %i[ edit update ]
     # スコープでまとめるべき？
     get '/calender/:year(/:month(/:day))', to: 'users/calenders#calender', as: 'calender',
       constraints: lambda { |request|
@@ -34,7 +43,4 @@ Rails.application.routes.draw do
     get 'calender/ajax/:change', to: 'users/calenders#ajax', as: 'calender_ajax'
   end
 
-  scope :profile do
-    get 'edit', to: "users#edit", as: 'edit_user'
-  end
 end

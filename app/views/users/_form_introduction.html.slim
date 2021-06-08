@@ -1,0 +1,4 @@
+= form_with model: @user, url: user_settings_profile_path, local: false, class: "d-none", id: 'form-introduction' do |f|
+  = f.text_area :introduction, class: 'neo-sink p-3 w-100'
+  = f.submit class: 'neo neo-btn d-block w-100 mb-2 py-1'
+  button#form-introduction-cancel.neo.neo-btn.d-block.w-100.py-1 cancel
