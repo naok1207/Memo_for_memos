@@ -1,14 +1,22 @@
 .d-flex
   .profile.mt-5.ms-5
     .neo.rounded-circle.profile-image
-      = image_pack_tag "media/images/icon-person-male.svg", class: "profile-image-svg", size: "100x100"
+      - if @user.avatar.present?
+        = image_tag @user.avatar.url, size: "140x140", style: "border-radius: 150px; transform: translate(5px, 5px);"
+      - else
+        = image_pack_tag "media/images/icon-person-male.svg", class: "profile-image-svg", size: "100x100"
     .profile-detail.mt-4
       p.profile-username= @user.username
-      p.profile-body
-        | texttexttexttexttexttexttexttexttexttexttexttexttexttext
+      p.profile-body#profile-body
+        = @user.introduction
+        - if logged_in? && @user == current_user
+          = render 'users/form_introduction'
       - if logged_in? && @user == current_user
         ul.profile-list
-          li.profile-list-item= link_to '編集', edit_user_path, class: "neo neo-btn profile-link"
+          /li.profile-list-item= link_to 'プロフィール編集', edit_user_profile_path(current_user), class: "neo neo-btn profile-link"
+          li.profile-list-item
+            a.neo.neo-btn.profile-link#edit-introduction-button プロフィール編集
+          li.profile-list-item= link_to 'ユーザ編集', edit_user_path, class: "neo neo-btn profile-link"
           li.profile-list-item= link_to '退会', user_path, method: :delete, class: "neo neo-btn profile-link"
           li.profile-list-item= link_to 'ログアウト', logout_path, method: :delete, class: "neo neo-btn profile-link"
       - else

@@ -11,4 +11,5 @@ import '../stylesheets/application'
 require('jquery')
 
 import '../javascripts/bootstrap_js_files.js'
+import '../javascripts/user_settings.js'
 const images = require.context('../images/', true)

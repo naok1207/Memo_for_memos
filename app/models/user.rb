@@ -4,8 +4,10 @@
 #
 #  id                           :bigint           not null, primary key
 #  access_token                 :string(255)      not null
+#  avatar                       :string(255)
 #  crypted_password             :string(255)
 #  email                        :string(255)      not null
+#  introduction                 :text(65535)
 #  remember_me_token            :string(255)
 #  remember_me_token_expires_at :datetime
 #  salt                         :string(255)
@@ -22,6 +24,8 @@
 #
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  attr_accessor :avatar_cache
+  mount_uploader :avatar, AvatarUploader
   VALID_USERNAME_NGWORD = /login|logout|signup|categories|category|memos|tags/
   VALID_USERNAME_REGEX = /\A[A-Za-z][A-Za-z0-9]*/i
   VALID_EMAIL_REGEX = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/

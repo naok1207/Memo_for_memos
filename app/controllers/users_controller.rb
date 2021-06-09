@@ -25,26 +25,26 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by!(username: current_user.username)
+    @user = current_user
   end
 
   def update
-    @user = User.find_by!(username: current_user.username)
+    @user = current_user
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to user_settings_profile_path
     else
       render :edit
     end
   end
 
   def destroy
-    @user = User.find_by!(username: current_user.username)
+    @user = current_user
     @user.destroy!
     redirect_to root_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar, :introduction)
   end
 end

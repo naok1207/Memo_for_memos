@@ -22,11 +22,14 @@ nav
     - if logged_in?
       li.header-list-item= link_to user_tags_path(current_user), class: "header-link neo neo-btn" do
         = image_pack_tag "media/images/icon-tag.svg", size: '30x30', class: 'svg'
-      li.header-list-item= link_to "#", class: "header-link neo neo-btn" do
+      li.header-list-item= link_to user_settings_profile_path, class: "header-link neo neo-btn" do
         = image_pack_tag "media/images/icon-settings.svg", size: '30x30', class: 'svg'
   - if logged_in?
     = link_to current_user, class: "neo neo-hover header-user-link rounded-circle" do
-      = image_pack_tag "media/images/icon-person-male.svg", class: "header-user-svg", size: "40x40"
+      - if current_user.avatar.present?
+        = image_tag current_user.avatar.url, size: "60x60", style: "border-radius: 60px; transform: translate(-15px, -15px);"
+      - else
+        = image_pack_tag "media/images/icon-person-male.svg", class: "header-user-svg", size: "40x40"
   - else
     = link_to "sign in", login_path, class: "neo neo-btn me-3"
     = link_to "sign up", signup_path, class: "neo neo-btn"
