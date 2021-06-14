@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_123628) do
+ActiveRecord::Schema.define(version: 2021_06_13_040006) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_06_02_123628) do
     t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "under_category_ids", default: "/"
     t.index ["name", "user_id"], name: "index_categories_on_name_and_user_id", unique: true
     t.index ["parent_id"], name: "index_categories_on_parent_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
