@@ -2,12 +2,13 @@
 #
 # Table name: categories
 #
-#  id         :bigint           not null, primary key
-#  name       :string(255)      not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  parent_id  :integer
-#  user_id    :bigint           not null
+#  id                 :bigint           not null, primary key
+#  name               :string(255)      not null
+#  under_category_ids :string(255)      default("/")
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  parent_id          :integer
+#  user_id            :bigint           not null
 #
 # Indexes
 #
@@ -20,6 +21,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Category < ApplicationRecord
+  include RansackSearch
+
   belongs_to :user
   # 上位階層のカテゴリ
   belongs_to :parent, class_name: 'Category', foreign_key: 'parent_id', optional: true
@@ -35,6 +38,13 @@ class Category < ApplicationRecord
 
   def to_param
     name
+  end
+
+  before_create do
+    if (self.parent_id.present?)
+      category = Category.find(self.parent_id)
+      self.under_category_ids = "#{category.under_category_ids}#{category.id}/"
+    end
   end
 
   # 子要素の全てのデータを残さずに削除する
