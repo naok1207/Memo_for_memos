@@ -18,10 +18,7 @@
         = image_pack_tag "media/images/icon-add-file.svg", class: "categories-svg", size: "20x20"
       li
         #search_content_category_form
-          = form_with model: @search_content, url: searches_contents_categories_path, local: false, method: :get do |f|
-            = f.text_field :key_word
-            = f.hidden_field :category_name, name: :category_name, value: @category.name
-            = f.submit
+          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path, category: @category }
         #category-show-form
 
     .mt-7.ms-2.neo.min-h-90.max-h-90

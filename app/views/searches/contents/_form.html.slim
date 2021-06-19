@@ -1,0 +1,7 @@
+= form_with model: @search_content, url: url, local: false, method: :get, class: 'neo d-inline-block p-1', id: 'search-content-form' do |f|
+  = f.text_field :key_word, class: 'neo-sink'
+  - if defined? user
+    = f.hidden_field :username, name: :username, value: user.username
+  - if defined? category
+    = f.hidden_field :category_name, name: :category_name, value: category.name
+  = f.submit class: 'neo neo-btn'

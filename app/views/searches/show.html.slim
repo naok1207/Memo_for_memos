@@ -1,4 +1,2 @@
-= form_with model: @search_content, url: searches_contents_memos_path, local: false, method: :get do |f|
-  = f.text_field :key_word
-  = f.submit
+= render partial: 'searches/contents/form', locals: { url: searches_contents_memos_path }
 #memos-list.neo-card-list

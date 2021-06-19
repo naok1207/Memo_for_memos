@@ -7,9 +7,7 @@
         = image_pack_tag "media/images/icon-folder-new.svg", class: "categories-svg", size: "20x20"
       li.categories-list-item
         #own_memo_search_form
-          = form_with model: @search_content, url: searches_contents_categories_path, local: false, method: :get do |f|
-            = f.text_field :key_word
-            = f.submit
+          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path }
       li
         #category-show-form
     .mt-7.ms-2.neo.min-h-90.max-h-90
