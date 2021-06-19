@@ -1,0 +1,9 @@
+
+.mt-7.ms-2.neo.min-h-90.max-h-90.pt-3
+  #memo-title
+    = @memo.title
+  #memo-body.memo-body.markdown-body.neo
+    = markdown @memo.body
+= link_to :back, class: 'header-link neo neo-btn' do
+  = image_pack_tag "media/images/icon-forward.svg", size: '30x30', class: 'svg-rotate'
+= javascript_pack_tag 'markdown'
