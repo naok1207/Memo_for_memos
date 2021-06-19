@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :categories, param: :name do
     resources :memos, controller: 'categories/memos', only: %i[ show new create edit update destroy]
   end
+
   resources :memos, only: %i[ index ]
 
   resources :tags, param: :name, only: %i[ index show ]
@@ -20,6 +21,16 @@ Rails.application.routes.draw do
     resource :profile, only: %i[ show update ]
     resource :avatar, only: %i[ update destroy ] do
       post 'confirm', as: 'confirm'
+    end
+  end
+
+  # 検索
+  namespace :search do
+    # メモ、カテゴリの内容に関連する検索
+    namespace :content do
+      resource :categories, only: :show
+      resource :memos, only: :show
+      resource :users, only: :show
     end
   end
 
