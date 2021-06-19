@@ -1,0 +1,4 @@
+|
+  $('#categories-list').html(" #{ j render partial: 'categories/category', collection: @categories } ");
+  $('#memos-list').html(" #{ j render partial: 'categories/memos/memo', collection: @memos } ");
+  $('#memos-list').removeClass('d-none');

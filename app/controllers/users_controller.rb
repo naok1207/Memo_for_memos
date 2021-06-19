@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_login, only: %i[ edit update destroy ]
   before_action :generate_calender, only: :show
   before_action :already_logged_in, only: :new
+  before_action :set_search_content_form, only: :show
   layout 'layouts/basic_auth', only: %i[ new edit ]
 
   def show
