@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :memos, controller: 'categories/memos', only: %i[ show new create edit update destroy]
   end
 
-  resources :memos, only: %i[ index ]
+  resources :memos, only: %i[ index show ]
 
   resources :tags, param: :name, only: %i[ index show ]
 
@@ -25,12 +25,14 @@ Rails.application.routes.draw do
   end
 
   # 検索
-  namespace :search do
+  resource :searches, only: :show do
     # メモ、カテゴリの内容に関連する検索
-    namespace :content do
-      resource :categories, only: :show
-      resource :memos, only: :show
-      resource :users, only: :show
+    scope module: :searches do
+      namespace :contents do
+        resource :categories, only: :show
+        resource :memos, only: :show
+        resource :users, only: :show
+      end
     end
   end
 

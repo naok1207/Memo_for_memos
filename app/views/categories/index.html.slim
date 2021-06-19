@@ -7,7 +7,7 @@
         = image_pack_tag "media/images/icon-folder-new.svg", class: "categories-svg", size: "20x20"
       li.categories-list-item
         #own_memo_search_form
-          = form_with model: @search_content, url: search_content_categories_path, local: false, method: :get do |f|
+          = form_with model: @search_content, url: searches_contents_categories_path, local: false, method: :get do |f|
             = f.text_field :key_word
             = f.submit
       li

@@ -1,4 +1,4 @@
-class Search::ContentController < ApplicationController
+class Searches::ContentsController < ApplicationController
   before_action :set_search_content
 
   private

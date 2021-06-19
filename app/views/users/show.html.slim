@@ -25,7 +25,7 @@
   .dashboard.neo-sink.vh-65.m-5.col
     /- unless logged_in? && @user == current_user
     #search_content_user_form
-      = form_with model: @search_content, url: search_content_users_path, local: false, method: :get do |f|
+      = form_with model: @search_content, url: searches_contents_users_path, local: false, method: :get do |f|
         = f.text_field :key_word
         = f.hidden_field :username, name: :username, value: @user.username
         = f.submit

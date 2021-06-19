@@ -1,4 +1,4 @@
-class Search::Content::UsersController < Search::ContentController
+class Searches::Contents::UsersController < Searches::ContentsController
   # 他のユーザの検索
   def show
     user = User.find_by(username: params[:username])
