@@ -21,7 +21,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Memo < ApplicationRecord
-  include RansackSearch
+  extend RansackSearch
 
   before_create :generate_hex_id
   belongs_to :category, optional: true

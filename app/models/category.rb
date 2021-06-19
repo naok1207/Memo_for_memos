@@ -21,7 +21,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Category < ApplicationRecord
-  include RansackSearch
+  extend RansackSearch
 
   belongs_to :user
   # 上位階層のカテゴリ
