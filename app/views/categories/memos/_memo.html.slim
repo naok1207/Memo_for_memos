@@ -1,1 +1,2 @@
+- @category = memo.category unless @category.present?
 li= link_to memo.title, category_memo_path(@category, memo), class: 'neo neo-card'

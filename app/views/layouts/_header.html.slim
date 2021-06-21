@@ -17,7 +17,7 @@ nav
         = image_pack_tag "media/images/icon-add-file.svg", size: '30x30', class: 'svg'
       li.header-list-item= link_to "#", class: "header-link neo neo-btn" do
         = image_pack_tag "media/images/icon-assessment.svg", size: '30x30', class: 'svg'
-    li.header-list-item= link_to "#", class: "header-link neo neo-btn" do
+    li.header-list-item= link_to searches_path, class: "header-link neo neo-btn" do
       = image_pack_tag "media/images/icon-search.svg", size: '30x30', class: 'svg'
     - if logged_in?
       li.header-list-item= link_to user_tags_path(current_user), class: "header-link neo neo-btn" do

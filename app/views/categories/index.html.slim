@@ -5,9 +5,14 @@
     ul.categories-list
       li.categories-list-item= link_to new_category_path, remote: true, class: 'neo neo-btn category-link' do
         = image_pack_tag "media/images/icon-folder-new.svg", class: "categories-svg", size: "20x20"
+      li.categories-list-item
+        #own_memo_search_form
+          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path }
       li
         #category-show-form
     .mt-7.ms-2.neo.min-h-90.max-h-90
       .mx-auto
         #categories-list.neo-card-list
           = render @categories
+        .neo.neo-hr.my-1
+        #memos-list.neo-card-list.d-none

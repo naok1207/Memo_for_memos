@@ -316,3 +316,25 @@ a {
     padding: 10px;
   }
 }
+
+// 検索ボタン
+// 同様のデザインが多いのであとでまとめる
+#search-content-form {
+  margin-left: 20px;
+  form {
+    margin-top: 16px;
+    padding: 2px;
+    border-radius: 8px;
+  }
+  input[type="text"] {
+    // font-size: 1rem;
+    border: none;
+    background-color: $bg-color;
+    border-radius: 8px;
+    padding: 10px 20px;
+    outline: none;
+  }
+  input[type="submit"] {
+    padding: 10px;
+  }
+}

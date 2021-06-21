@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def already_logged_in
     redirect_to categories_path if logged_in?
   end
+
+  def set_search_content_form
+    @search_content = SearchContent.new
+  end
 end

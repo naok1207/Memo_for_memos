@@ -23,3 +23,8 @@
         .neo.calender.other-user-calender.mt-5#calender
           = render 'users/calender'
   .dashboard.neo-sink.vh-65.m-5.col
+    /- unless logged_in? && @user == current_user
+    #search_content_user_form
+      = render partial: 'searches/contents/form', locals: { url: searches_contents_users_path, user: @user }
+    .mx-auto
+      #memos-list.neo-card-list

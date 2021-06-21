@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :require_login
   before_action :generate_calender, only: %i[ index show update ]
+  before_action :set_search_content_form, only: %i[ index show ]
 
   def index
     @categories = current_user.categories.main.name_asc
@@ -52,6 +53,11 @@ class CategoriesController < ApplicationController
     @category.memos.destroy_all
     @category.destroy!
     redirect_to @category.parent.present? ? @category.parent : categories_path
+  end
+
+  def search
+    category = current_user.categories.find_by(name: params[:category_name])
+    ContentSearchForm.own_search(params[:key_word], category)
   end
 
   private
