@@ -4,6 +4,7 @@
 #
 #  id          :string(20)       not null, primary key
 #  body        :text(65535)
+#  status      :integer          default("incomplete"), not null
 #  title       :string(255)      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -13,6 +14,7 @@
 # Indexes
 #
 #  index_memos_on_category_id  (category_id)
+#  index_memos_on_status       (status)
 #  index_memos_on_user_id      (user_id)
 #
 # Foreign Keys
@@ -30,6 +32,8 @@ class Memo < ApplicationRecord
   has_many :tags, through: :memo_tag_relations
 
   validates :title, presence: true
+
+  enum status: { incomplete: 0, complete: 1 }
 
   scope :title_asc, -> { order title: :asc }
 

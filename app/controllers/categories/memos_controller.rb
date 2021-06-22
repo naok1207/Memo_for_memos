@@ -32,8 +32,7 @@ class Categories::MemosController < ApplicationController
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
     @memo.update(memo_params)
-    tag_list = params[:memo][:tags_ids].split
-    @memo.save_tags(tag_list)
+    @memo.save_tags(params[:tags_ids].split ) if params[:tags_ids].present?
   end
 
   def destroy
@@ -44,6 +43,6 @@ class Categories::MemosController < ApplicationController
 
   private
   def memo_params
-    params.require(:memo).permit(:title, :body).merge(user_id: current_user.id)
+    params.require(:memo).permit(:title, :body, :status).merge(user_id: current_user.id)
   end
 end
