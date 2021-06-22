@@ -6,13 +6,13 @@ class SearchContent
 
   # その他に基づくメモを検索する
   def user_memo_search(user)
-    user.memos.multiple_search(:title_or_body_cont, key_word)
+    user.memos.multiple_search(:title_or_body_cont, key_word).complete
   end
 
   # 公開されているメモ全体を検索する
   # 公開設定による修正が必要
   def whole_search
-    Memo.multiple_search(:title_or_body_cont, key_word)
+    Memo.multiple_search(:title_or_body_cont, key_word).complete
   end
 
   # ログインユーザに対するメモを検索する
