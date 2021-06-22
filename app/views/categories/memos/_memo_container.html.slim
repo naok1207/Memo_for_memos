@@ -3,6 +3,7 @@ ul.memos-list
     #memo-title.neo
       = image_pack_tag "media/images/icon-file.svg", class: "memo-name-svg", size: "20x20"
       | #{@memo.title}
+  li.memos-list-item.me-auto.neo.memo-status= @memo.status
   li.memos-list-item.ms-auto= link_to edit_category_memo_path(@category, @memo), class: 'neo neo-btn memo-link', remote: true do
     = image_pack_tag "media/images/icon-pencil.svg", class: "memos-svg", size: "20x20"
   li.memos-list-item= link_to category_memo_path(@category, @memo), method: :delete, class: 'neo neo-btn memo-link' do

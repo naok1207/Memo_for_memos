@@ -8,5 +8,7 @@
   .mt-7.ms-2.neo.min-h-90.max-h-90
     #memo-body.memo-body
       = f.text_area :body, class: 'neo-sink'
-      = f.text_field :tags_ids, value: @tag_list, class: 'neo-sink'
+      = f.text_field :tags_ids, name: :tags_ids, value: @tag_list, class: 'neo-sink'
+      = f.label :status, 'complete?'
+      = f.select :status, Memo.statuses.keys.to_a, {}
       = f.submit class: 'neo neo-btn d-block ms-auto py-2 px-4'
