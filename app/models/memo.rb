@@ -2,20 +2,22 @@
 #
 # Table name: memos
 #
-#  id          :string(20)       not null, primary key
-#  body        :text(65535)
-#  status      :integer          default("incomplete"), not null
-#  title       :string(255)      not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category_id :bigint
-#  user_id     :bigint
+#  id            :string(20)       not null, primary key
+#  body          :text(65535)
+#  public_status :integer          default("unpublised"), not null
+#  status        :integer          default("incomplete"), not null
+#  title         :string(255)      not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  category_id   :bigint
+#  user_id       :bigint
 #
 # Indexes
 #
-#  index_memos_on_category_id  (category_id)
-#  index_memos_on_status       (status)
-#  index_memos_on_user_id      (user_id)
+#  index_memos_on_category_id    (category_id)
+#  index_memos_on_public_status  (public_status)
+#  index_memos_on_status         (status)
+#  index_memos_on_user_id        (user_id)
 #
 # Foreign Keys
 #
@@ -34,6 +36,7 @@ class Memo < ApplicationRecord
   validates :title, presence: true
 
   enum status: { incomplete: 0, complete: 1 }
+  enum public_status: { unpublised: 0, limited_release: 1, whole_release: 2 }
 
   scope :title_asc, -> { order title: :asc }
 

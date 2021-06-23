@@ -11,4 +11,6 @@
       = f.text_field :tags_ids, name: :tags_ids, value: @tag_list, class: 'neo-sink'
       = f.label :status, 'complete?'
       = f.select :status, Memo.statuses.keys.to_a, {}
+      = f.label :public_status, 'release?'
+      = f.select :public_status, Memo.public_statuses.keys.to_a, {}
       = f.submit class: 'neo neo-btn d-block ms-auto py-2 px-4'
