@@ -43,6 +43,6 @@ class Categories::MemosController < ApplicationController
 
   private
   def memo_params
-    params.require(:memo).permit(:title, :body, :status).merge(user_id: current_user.id)
+    params.require(:memo).permit(:title, :body, :status, :public_status).merge(user_id: current_user.id)
   end
 end
