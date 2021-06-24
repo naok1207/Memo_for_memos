@@ -1,0 +1,6 @@
+- if current_user.bookmark?(@memo)
+  = link_to bookmarks_path(memo_id: @memo.id), method: :delete, remote: true do
+    = image_pack_tag "media/images/icon-book-mark.svg", size: '30x30', class: 'svg bookmark'
+- else
+  = link_to bookmarks_path(memo_id: @memo.id), method: :post, remote: true do
+    = image_pack_tag "media/images/icon-book-mark.svg", size: '30x30', class: 'svg'

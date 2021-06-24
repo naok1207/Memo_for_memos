@@ -41,6 +41,8 @@ class User < ApplicationRecord
 
   has_many :categories, dependent: :destroy
   has_many :memos, dependent: :nullify
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_memos, through: :bookmarks, source: :memo
 
   def to_param
     username
@@ -48,6 +50,18 @@ class User < ApplicationRecord
 
   def tags
     self.memos.map{ |memo| memo.tags }.flatten
+  end
+
+  def add_bookmark(memo)
+    self.bookmark_memos << memo
+  end
+
+  def remove_bookmark(memo)
+    self.bookmarks.destroy(memo)
+  end
+
+  def bookmark?(memo)
+    self.bookmark_memos.include?(memo)
   end
 
   private

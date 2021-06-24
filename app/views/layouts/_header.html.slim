@@ -8,6 +8,9 @@ nav
       - else
         li.header-list-item= link_to categories_path, class: 'header-link neo neo-btn' do
           = image_pack_tag "media/images/icon-forward.svg", size: '30x30', class: 'svg-rotate'
+    - else
+      .header-list-item= link_to :back, class: 'header-link neo neo-btn' do
+        = image_pack_tag "media/images/icon-forward.svg", size: '30x30', class: 'svg-rotate'
     - if logged_in?
       li.header-list-item= link_to categories_path, class: "header-link neo neo-btn" do
         = image_pack_tag "media/images/icon-home.svg", size: '30x30', class: 'svg'
@@ -22,6 +25,8 @@ nav
     - if logged_in?
       li.header-list-item= link_to user_tags_path(current_user), class: "header-link neo neo-btn" do
         = image_pack_tag "media/images/icon-tag.svg", size: '30x30', class: 'svg'
+      li.header-list-item= link_to bookmarks_path, class: "header-link neo neo-btn" do
+        = image_pack_tag "media/images/icon-book-mark.svg", size: '30x30', class: 'svg'
       li.header-list-item= link_to user_settings_profile_path, class: "header-link neo neo-btn" do
         = image_pack_tag "media/images/icon-settings.svg", size: '30x30', class: 'svg'
   - if logged_in?

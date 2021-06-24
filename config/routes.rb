@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :tags, param: :name, only: %i[ index show ]
 
+  resource :bookmarks, only: %i[ show create destroy ]
+
   namespace :user_settings do
     resource :profile, only: %i[ show update ]
     resource :avatar, only: %i[ update destroy ] do

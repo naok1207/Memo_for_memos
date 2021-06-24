@@ -32,6 +32,7 @@ class Memo < ApplicationRecord
   belongs_to :user, optional: true
   has_many :memo_tag_relations
   has_many :tags, through: :memo_tag_relations
+  has_many :bookmarks, dependent: :destroy
 
   validates :title, presence: true
 
