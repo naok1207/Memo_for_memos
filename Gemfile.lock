@@ -155,6 +155,8 @@ GEM
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    impressionist (2.0.0)
+      nokogiri (~> 1)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jwt (2.2.3)
@@ -336,6 +338,7 @@ DEPENDENCIES
   carrierwave
   config
   foreman
+  impressionist
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)

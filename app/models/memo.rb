@@ -26,6 +26,7 @@
 #
 class Memo < ApplicationRecord
   extend RansackSearch
+  is_impressionable
 
   before_create :generate_hex_id
   belongs_to :category, optional: true
