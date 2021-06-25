@@ -8,5 +8,6 @@ class MemosController < ApplicationController
 
   def show
     @memo = Memo.find(params[:id])
+    impressionist(@memo, nil, unique: [:session_hash])
   end
 end

@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_122329) do
 
   create_table "impressions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "impressionable_type"
-    t.integer "impressionable_id"
+    t.string "impressionable_id"
     t.integer "user_id"
     t.string "controller_name"
     t.string "action_name"
