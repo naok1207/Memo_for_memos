@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
   def set_search_content_form
     @search_content = SearchContent.new
   end
+
+  def add_category_name
+    @user = current_user unless @user.present?
+    categories = @user.categories.pluck(:id, :name)
+    @memos = @memos.each{ |memo| memo.category_name = categories.find{|category| category[0] == memo.category_id}[1] }
+  end
 end

@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by!(username: params[:username])
-  rescue
-    redirect_to root_path
+    @memos = @user == current_user ? @user.memos.order(updated_at: :asc) : @user.memos.complete.whole_release.order(updated_at: :asc)
+    add_category_name
   end
 
   def new

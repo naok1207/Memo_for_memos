@@ -9,5 +9,6 @@ class Users::TagsController < ApplicationController
     @tag = Tag.find_by(name: params[:name])
     # @memos = @tag.memos.where(user: current_user)
     @memos = current_user.memos
+    add_category_name
   end
 end

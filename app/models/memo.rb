@@ -42,6 +42,8 @@ class Memo < ApplicationRecord
 
   scope :title_asc, -> { order title: :asc }
 
+  attribute :category_name, :string
+
   # ランダム文字列のidを生成
   def generate_hex_id
     self.id = loop do
@@ -63,5 +65,10 @@ class Memo < ApplicationRecord
       memo_tag = Tag.find_or_create_by(name: new_name)
       self.tags << memo_tag
     end
+  end
+
+  def merge_category_name(user)
+    categories = user.categories.pluck(:id, :name)
+    self.each{ |memo| memo.category_name = categories.find{|category| category[0] == memo.category_id}[1] }
   end
 end

@@ -1,5 +1,5 @@
 - if memo.category_id.present?
-  = link_to category_memo_path(Category.find(memo.category_id), memo), class: 'neo neo-card' do
+  = link_to category_memo_path(memo.category_name, memo), class: 'neo neo-card' do
     = memo.title
 - else
   = link_to memo.title + " no-category", "#" , class: 'neo neo-card'
