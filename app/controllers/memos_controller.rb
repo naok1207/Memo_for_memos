@@ -4,6 +4,7 @@ class MemosController < ApplicationController
 
   def index
     @memos = current_user.memos.title_asc
+    add_category_name
   end
 
   def show

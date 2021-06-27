@@ -28,3 +28,5 @@
       = render partial: 'searches/contents/form', locals: { url: searches_contents_users_path, user: @user }
     .mx-auto
       #memos-list.neo-card-list
+        h3.mt-3.w-100 最近のメモ
+        = render partial: 'memos/memo', collection: @memos

@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.find_by!(name: params[:name])
     @categories = @category.children
     @memos = @category.memos.title_asc
+    add_category_name
   rescue
     redirect_to categories_path, alert: "not found #{params[:name]} category"
   end
