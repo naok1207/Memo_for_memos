@@ -1,0 +1,14 @@
+.mind-card-list
+  .neo.mind-card.user= @user.username
+  .with-user
+    - @user.categories.main.each do |category|
+      .category-group
+        .neo.mind-card= category.name
+        .with-category
+          - category.children.each do |child|
+            .child-group
+              .neo.mind-card= child.name
+              .with-child
+                - child.memos.each do |child_memo|
+                  .neo.mind-card= child_memo.title
+= javascript_pack_tag 'minds'

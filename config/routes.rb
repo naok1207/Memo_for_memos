@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :users, param: :username, path: '/', only: %i[ show create edit update destroy ] do
     resources :tags, param: :name, controller: 'users/tags', only: %i[ index show ]
     resource :profile, only: %i[ edit update ]
+    resource :minds, only: :show, controller: 'users/minds'
     # スコープでまとめるべき？
     get '/calender/:year(/:month(/:day))', to: 'users/calenders#calender', as: 'calender',
       constraints: lambda { |request|
