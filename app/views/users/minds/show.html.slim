@@ -1,4 +1,4 @@
-.mind-card-list
+/.mind-card-list
   .neo.mind-card.user= @user.username
   .with-user
     - @user.categories.main.each do |category|
@@ -12,3 +12,8 @@
                 - child.memos.each do |child_memo|
                   .neo.mind-card= child_memo.title
 = javascript_pack_tag 'minds'
+
+.mind-card-list
+  .neo.mind-card.user= @user.username
+  .children
+    = generate_minds

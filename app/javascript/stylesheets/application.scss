@@ -378,17 +378,12 @@ a {
 .mind-card-list {
   display: flex;
   zoom: 75%;
-  .with-user {
-    .category-group {
-      display: flex;
-      .with-category {
-        .child-group {
-            display: flex;
-            .with-child {
-
-            }
-        }
-      }
+  .category-group {
+    display: flex;
+  }
+  .memo-group {
+    .mind-card {
+      margin-bottom: 30px;
     }
   }
 }
