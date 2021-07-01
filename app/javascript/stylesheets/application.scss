@@ -390,11 +390,14 @@ a {
   }
 }
 
+body {
+  position: relative;
+}
 .minds-svg {
-  width: 200%;
+  width: 100%;
   zoom: 75%;
 
-  height: 34050px;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
