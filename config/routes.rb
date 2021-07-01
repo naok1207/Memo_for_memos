@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :minds, only: :show
+
   namespace :api do
     resources :memos, only: %i[ create ]
   end

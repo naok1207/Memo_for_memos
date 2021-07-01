@@ -348,3 +348,58 @@ a {
 .bookmark {
   background-color: darkcyan;
 }
+
+.mind-card-list {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 300px;
+  margin-top: 50px;
+
+  .mind-card {
+    min-width: 200px;
+    width: 200px;
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 300px;
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 100;
+
+    &:hover {
+      box-shadow:  inset 1px 1px 5px $neo-color-t,
+                   inset -1px -1px 5px $neo-color-b,
+                    -10px -10px 16px $neo-color-t,
+                    10px 10px 16px $neo-color-b;
+    }
+  }
+
+
+}
+
+.mind-card-list {
+  display: flex;
+  zoom: 75%;
+  .category-group {
+    display: flex;
+  }
+  .memo-group {
+    .mind-card {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+body {
+  position: relative;
+}
+.minds-svg {
+  width: 100%;
+  zoom: 75%;
+
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
