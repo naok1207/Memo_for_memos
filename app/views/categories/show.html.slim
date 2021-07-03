@@ -1,8 +1,8 @@
 
-.d-flex
-  .sidebar.col-2.mt-3.mx-2.vh-70
+.d-flex.h-100.w-100
+  .sidebar
     = render 'layouts/sidebar'
-  .categories.col
+  .categories.main-container
     ul.categories-list
       li.category-name
         #category-name.neo
@@ -19,12 +19,20 @@
       li
         #search_content_category_form
           = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path, category: @category }
+      li
         #category-show-form
 
-    .mt-7.ms-2.neo.min-h-90.max-h-90
-      .mx-auto
-        #memos-list.neo-card-list
-          = render @memos
-        .neo.neo-hr.my-1
+    .neo.category-container
+      .content-list
         #categories-list.neo-card-list
+          .content-list-header
+            .content-list-image.neo
+              = image_pack_tag "media/images/icon-folder.svg", class: "content-list-image-svg", size: "20x20"
           = render @categories
+          .dummy
+        #memos-list.neo-card-list
+          .content-list-header
+            .content-list-image.neo
+              = image_pack_tag "media/images/icon-file.svg", class: "content-list-image-svg", size: "20x20"
+          = render @memos
+          .dummy
