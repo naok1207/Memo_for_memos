@@ -129,6 +129,8 @@ a {
 .categories {
   &-list {
     display: flex;
+    margin-bottom: 15px;
+    margin-left: 10px;
     .category-name {
       margin-right: 20px;
       padding: 0;
@@ -144,18 +146,17 @@ a {
       margin-right: 10px;
     }
     &-item {
-      margin: 25px 20px;
       .category-link {
-        padding: 15px;
+          padding: 15px;
         .categories-svg {
+          margin-top: 10px;
           transform: translateY(25%);
         }
       }
     }
-    #category-show-form {
+    #category-show-form, #own_memo_search_form {
       margin-left: 20px;
       form {
-        margin-top: 16px;
         padding: 2px;
         border-radius: 8px;
       }
@@ -281,11 +282,29 @@ a {
   justify-content: space-between;
   padding-left: 50px;
   padding-right: 50px;
+  max-height: 100%;
+
+  &::before{
+    content: "";
+    display: block;
+    width: 300px;
+    order:1;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 300px;
+  }
+
+  &::before, &::after {
+    margin-inline: auto;
+  }
 
   .neo-card {
     width: 300px;
     margin-top: 15px;
     margin-bottom: 15px;
+    margin: 15px auto;
     border-radius: 8px;
 
     &:hover {
