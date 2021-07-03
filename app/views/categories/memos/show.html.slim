@@ -1,6 +1,6 @@
-.d-flex
-  .sidebar.col-2.mt-3.mx-2.vh-70
+.d-flex.h-100.w-100
+  .sidebar
     = render 'layouts/sidebar'
-  #memos.memos.col
+  #memos.memos.main-container
     = render 'memo_container'
 = javascript_pack_tag 'markdown'

@@ -12,3 +12,8 @@ function reflectHighlight() {
 }
 
 window.reflectHighlight = reflectHighlight
+
+var memoBody = $('#memo-body');
+if (memoBody.html() == '') {
+  memoBody.html("Any Contents");
+}

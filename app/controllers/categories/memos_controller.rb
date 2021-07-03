@@ -5,6 +5,7 @@ class Categories::MemosController < ApplicationController
   def show
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
+    @tags = @memo.tags
   end
 
   def new

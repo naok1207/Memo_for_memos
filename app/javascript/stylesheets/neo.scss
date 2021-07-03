@@ -251,7 +251,7 @@ main {
 .main-container {
   height: 100%;
   width: 100%;
-  .category-container {
+  .category-container, .memo-container {
     height: calc(100% - 60px);
     max-height: calc(100% - 60px);
     min-width: 100%;
@@ -260,9 +260,9 @@ main {
       overflow-y: scroll;
       max-height: 100%;
 
-      &::-webkit-scrollbar {
-        display: none;
-      }
+      // &::-webkit-scrollbar {
+      //   // display: none;
+      // }
       &-header {
         min-width: 100%;
         margin: 15px;

@@ -177,20 +177,18 @@ a {
 .memos {
   &-list {
     display: flex;
+    margin-bottom: 15px;
     .memo-title {
       margin-right: 20px;
       padding: 0;
     }
     #memo-title {
-      margin-top: 13px;
       margin-left: 10px;
       padding: 12px;
       border-radius: 4px;
     }
     .memo-status {
-      margin-top: 13px;
       padding: 12px;
-      margin-bottom: 13px;
       border-radius: 4px;
     }
     .memo-name-svg {
@@ -198,10 +196,11 @@ a {
       margin-right: 10px;
     }
     &-item {
-      margin: 25px 20px;
+      margin-inline: 20px;
       .memo-link {
         padding: 15px;
         .memos-svg {
+          margin-top: 12px;
           transform: translateY(25%);
         }
       }
@@ -226,10 +225,44 @@ a {
       }
     }
   }
+  .memo-container {
+    position: relative;
+    padding: 30px;
+  }
   .memo-body {
-    padding: 30px 30px;
-    margin: 0 auto;
+    padding: 30px;
+    margin-inline: auto;
     width: 750px;
+    height: 100%;
+    overflow-y: scroll;
+
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+  }
+  .memo-tags {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 150px;
+    &-item {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+    }
+  }
+  .memo-impression {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 150px;
+    &-item {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      padding: 5px 20px;
+    }
   }
   .memo-form {
     .memo-title {
