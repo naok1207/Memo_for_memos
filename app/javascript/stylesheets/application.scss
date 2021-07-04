@@ -248,10 +248,11 @@ a {
     &-item {
       width: 100%;
       border-radius: 4px;
-      margin-bottom: 10px;
+      margin-top: 10px;
       padding: 5px 10px;
     }
   }
+
   .memo-impression {
     position: absolute;
     top: 30px;
@@ -265,6 +266,7 @@ a {
     }
   }
   .memo-form {
+    height: calc(100% - 75px);
     .memo-title {
       padding: 0;
       margin-top: 3px;
@@ -279,6 +281,67 @@ a {
           margin-left: 10px;
         }
       }
+    }
+    .memo-form-container {
+      position: relative;
+      padding: 30px;
+      height: 100%;
+      .tag_list {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 150px;
+        #tag_texts {
+          width: 100%;
+          padding-top: 10px;
+          div {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+          }
+        }
+        .tag-input-box {
+          width: 100%;
+          padding: 2px;
+          margin-top: 15px;
+          border-radius: 10px;
+        }
+        #tag_input {
+          width: 100%;
+          // font-size: 1rem;
+          border: none;
+          background-color: $bg-color;
+          border-radius: 8px;
+          padding: 10px;
+          outline: none;
+        }
+      }
+      .status_list {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 230px;
+        // &-item {
+        //   width: 100%;
+        //   border-radius: 4px;
+        //   margin-bottom: 10px;
+        //   padding: 5px 20px;
+        // }
+        .complete-status, .public-status {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          select {
+            width: 120px;
+          }
+        }
+      }
+    }
+    #memo-body {
+      width: 750px;
+      height: 100%;
+      margin-inline: auto;
     }
     input[type="text"] {
       // font-size: 1rem;
@@ -297,7 +360,7 @@ a {
       margin: 0 auto;
       width: 750px;
       border-radius: 20px;
-      min-height: 500px;
+      height: 100%;
       resize: none;
     }
     input[type="submit"] {
@@ -349,25 +412,25 @@ a {
   // border-radius: 10px;
 }
 
-#tag-select-form {
-  margin-left: auto;
-  form {
-    margin-top: 16px;
-    padding: 2px;
-    border-radius: 8px;
-  }
-  input[type="text"] {
-    // font-size: 1rem;
-    border: none;
-    background-color: $bg-color;
-    border-radius: 8px;
-    padding: 10px 20px;
-    outline: none;
-  }
-  input[type="submit"] {
-    padding: 10px;
-  }
-}
+// #tag-select-form {
+//   margin-left: auto;
+//   form {
+//     margin-top: 16px;
+//     padding: 2px;
+//     border-radius: 8px;
+//   }
+//   input[type="text"] {
+//     // font-size: 1rem;
+//     border: none;
+//     background-color: $bg-color;
+//     border-radius: 8px;
+//     padding: 10px 20px;
+//     outline: none;
+//   }
+//   input[type="submit"] {
+//     padding: 10px;
+//   }
+// }
 
 // 検索ボタン
 // 同様のデザインが多いのであとでまとめる

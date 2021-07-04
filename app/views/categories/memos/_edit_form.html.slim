@@ -1,16 +1,27 @@
-= form_with model: [@category, @memo], local: false, class: 'memo-form' do |f|
+= form_with model: [@category, @memo], local: false, class: 'memo-form', id: 'memo-edit-form' do |f|
   ul.memos-list.w-100
     li.memo-title.w-100
       #memo-title.neo.w-100
         = image_pack_tag "media/images/icon-file.svg", class: "memo-name-svg", size: "20x20"
         /= f.label :title
         = f.text_field :title, class: 'neo-sink'
-  .mt-7.ms-2.neo.min-h-90.max-h-90
-    #memo-body.memo-body
+  .neo.memo-form-container
+    #memo-body
       = f.text_area :body, class: 'neo-sink'
-      = f.text_field :tags_ids, name: :tags_ids, value: @tag_list, class: 'neo-sink'
-      = f.label :status, 'complete?'
-      = f.select :status, Memo.statuses.keys.to_a, {}
-      = f.label :public_status, 'release?'
-      = f.select :public_status, Memo.public_statuses.keys.to_a, {}
-      = f.submit class: 'neo neo-btn d-block ms-auto py-2 px-4'
+      = f.hidden_field :tags_ids, name: :tags_ids, id: 'tag_field', value: @tag_list.map{|tag| tag.name}.join(',')
+      .tag_list
+        h5 タグ
+        #tag_texts
+          - @tag_list.each do |tag|
+            .neo= tag.name
+        .neo.tag-input-box
+          input#tag_input.neo-sink
+      .status_list
+        .complete-status
+          = f.label :status
+          = f.select :status, Memo.statuses.keys.to_a, {}
+        .public-status
+          = f.label :public_status
+          = f.select :public_status, Memo.public_statuses.keys.to_a, {}
+        = f.submit class: 'neo neo-btn d-block ms-auto py-2 px-4', id: 'memo-submit'
+#leave_flag.d-none data-flag="true"
