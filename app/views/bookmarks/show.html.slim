@@ -1,5 +1,12 @@
-.categories.col
-  .mt-7.ms-2.neo.min-h-90.max-h-90
-    .mx-auto
-      #memos-list.neo-card-list
-        = render partial: 'bookmarks/memo', collection: @memos
+.d-flex.h-100.w-100
+  #memos.memos.main-container
+    .neo.index-memo-container
+      .content-list.h-100
+         #memos-list.neo-card-list
+          .content-list-header
+            .content-list-image.neo
+              = image_pack_tag "media/images/icon-book-mark.svg", class: "content-list-image-svg", size: "20x20"
+          = render partial: 'bookmarks/memo', collection: @memos
+          .dummy
+          .dummy
+          .dummy
