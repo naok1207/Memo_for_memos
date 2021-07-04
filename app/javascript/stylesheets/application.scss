@@ -37,31 +37,114 @@ a {
   }
 }
 
-.profile {
-  width: 12%;
+// .profile {
+//   width: 12%;
 
-  &-image {
-    width: 150px;
-    height: 150px;
-    &-svg {
-      display: block;
-      margin: auto;
-      transform: translateY(20px);
+//   &-image {
+//     width: 150px;
+//     height: 150px;
+//     &-svg {
+//       display: block;
+//       margin: auto;
+//       transform: translateY(20px);
+//     }
+//   }
+//   &-detail {
+//     overflow-wrap: break-word;
+//   }
+//   &-list {
+//     margin-top: 30px;
+//     &-item {
+//       margin-top: 50px;
+//     }
+//   }
+//   &-link {
+//     display: inline-block;
+//     width: 100%;
+//     text-align: center;
+//   }
+// }
+
+.user {
+  .user-sidebar {
+    position: relative;
+    padding: 10px 30px;
+    margin-right: 15px;
+    .user-image-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 220px;
+      .user-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        .user-image-svg {
+          display: block;
+          margin: auto;
+          transform: translateY(20px);
+        }
+      }
     }
-  }
-  &-detail {
-    overflow-wrap: break-word;
-  }
-  &-list {
-    margin-top: 30px;
-    &-item {
-      margin-top: 50px;
+    .user-profile {
+      padding: 10px 20px;
+      overflow-wrap: break-word;
+      margin-bottom: 20px;
     }
+    .user-menu {
+      width: 100%;
+      .user-menu-item {
+        width: 180px;
+        margin-inline: auto;
+        margin-top: 10px;
+        .user-menu-link {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .calender {
+        margin: 0;
+        // position: absolute;
+        // bottom: 30px;
+      }
+    }
+
   }
-  &-link {
-    display: inline-block;
+  .user-main-container {
+    height: 100%;
     width: 100%;
-    text-align: center;
+    padding: 30px;
+    overflow-y: scroll;
+
+    #search_content_user_form {
+      display: inline-block;
+      margin-left: 60px;
+      #search-content-form {
+        padding: 2px !important;
+        border-radius: 8px;
+      }
+    }
+    .content-list {
+      &-header {
+        min-width: 100%;
+        width: 100%;
+        max-width: 100%;
+        margin: 15px;
+      }
+      &-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        margin-left: 45px;
+        &-svg {
+          display: block;
+          margin: auto;
+          transform: translateY(10px);
+        }
+      }
+    }
   }
 }
 
