@@ -15,9 +15,13 @@
         li.neo.neo-btn.memo-impression-item=link_to '#' do
           | PV
           = @memo.impressionist_count
-        li.neo.neo-btn.memo-impression-item= link_to '#' do
-          = image_pack_tag "media/images/icon-book-mark.svg", class: "memos-svg", size: "20x20"
-          = @memo.bookmarks.count
+        - if @memo.user == current_user
+          li.neo.neo-btn.memo-impression-item= link_to '#' do
+            = image_pack_tag "media/images/icon-book-mark.svg", class: "memos-svg", size: "20x20"
+            = @memo.bookmarks.count
+        - else
+          li.neo.neo-btn.memo-impression-item#bookmark
+            = render 'bookmarks/form'
       = link_to :back, class: 'neo neo-btn search-back' do
         = image_pack_tag "media/images/icon-forward.svg", size: '30x30', class: 'svg-rotate'
 = javascript_pack_tag 'markdown'

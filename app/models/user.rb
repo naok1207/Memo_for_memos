@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def remove_bookmark(memo)
-    self.bookmarks.destroy(memo)
+    self.bookmark_memos.destroy(memo)
   end
 
   def bookmark?(memo)
