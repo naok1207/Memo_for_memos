@@ -1,4 +1,4 @@
-= form_with model: @user, local: true, class: 'setting-form' do |f|
+= form_with model: @user, method: :patch, local: true, class: 'setting-form' do |f|
   .form-group
     = f.label :old_password
     .input-box.neo

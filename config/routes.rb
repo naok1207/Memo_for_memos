@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
 
   # ユーザ関連
-  resources :users, param: :username, path: '/', only: %i[ show create edit update destroy ] do
+  resources :users, param: :username, path: '/', only: %i[ show create destroy ] do
     resources :tags, param: :name, controller: 'users/tags', only: %i[ index show ]
     resource :profile, only: %i[ edit update ]
     # スコープでまとめるべき？
