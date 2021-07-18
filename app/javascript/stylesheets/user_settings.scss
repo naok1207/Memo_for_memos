@@ -1,0 +1,75 @@
+.user-setting-container {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 30px;
+}
+
+.setting-form {
+  margin-inline: auto;
+  width: 700px;
+  .form-group {
+    display: flex;
+    padding: 20px;
+    label {
+      display: block;
+      width: 200px;
+
+    }
+    .input-box {
+      width: 100%;
+      display: block;
+      padding: 5px;
+      border-radius: 5px;
+      input, textarea {
+        font-size: 20px;
+        padding: 5px 15px;
+        border-radius: 5px;
+        width: 100%;
+        outline: none;
+        border: none;
+      }
+      textarea {
+        height: 100%;
+      }
+    }
+  }
+  input[type="submit"] {
+    display: block;
+    padding: 10px 20px;
+    margin-left: auto;
+    margin-right: 20px;
+    border-radius: 4px;
+  }
+}
+
+.setting-avatar {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  .setting-avatar-box {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    .setting-avatar-image {
+      border-radius: 50%;
+      padding: 8px;
+    }
+    .setting-avatar-svg {
+      transform: translate(25px, 20px);
+    }
+  }
+
+  .setting-avatar-form {
+    padding: 30px 10px;
+    .setting-avatar-btn {
+      display: block;
+      width: 80px;
+      text-align: center;
+      padding: 3px 6px;
+      margin-bottom: 10px;
+      margin-left: auto;
+    }
+  }
+}

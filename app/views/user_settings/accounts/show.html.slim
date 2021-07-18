@@ -1,0 +1,15 @@
+= form_with model: @user, local: true, class: 'setting-form' do |f|
+  .form-group
+    = f.label :old_password
+    .input-box.neo
+      = f.password_field :old_password, class: 'neo-sink'
+  .form-group
+    = f.label :new_password
+    .input-box.neo
+      = f.password_field :new_password, class: 'neo-sink'
+  .form-group
+    = f.label :new_password_confirmation
+    .input-box.neo
+      = f.password_field :new_password_confirmation, class: 'neo-sink'
+  = f.submit 'update', class: 'neo neo-btn'
+  = link_to '退会', user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか?' }, class: "neo neo-btn user-menu-link"

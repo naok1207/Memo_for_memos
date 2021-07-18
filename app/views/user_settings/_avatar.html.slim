@@ -1,15 +1,15 @@
-.position-absolute.top-0.end-0.vh-10
-  .rounded-circle.neo.profile-image
+.setting-avatar
+  .setting-avatar-box.neo
     - if current_user.avatar.present?
-      = image_tag current_user.avatar.to_s, size: "150x150", class: "rounded-circle"
+      = image_tag current_user.avatar.to_s, size: "150x150", class: "setting-avatar-image"
     - else
-      = image_pack_tag "media/images/icon-person-male.svg", class: "profile-image-svg", size: "100x100"
-  = form_with model: current_user, url: confirm_user_settings_avatar_path, method: :post, id: 'setting-avatar-form', local: false do |f|
-    = f.label :avatar, "upload", style: "cursor: pointer;"
+      = image_pack_tag "media/images/icon-person-male.svg", class: "setting-avatar-svg", size: "100x100"
+  = form_with model: current_user, url: confirm_user_settings_avatar_path, method: :post, id: 'setting-avatar-form', class: 'setting-avatar-form', local: false do |f|
+    = f.label :avatar, "upload", class: 'setting-avatar-btn neo neo-btn'
     = f.file_field :avatar, accept: ".jpg, .jpeg, .png", class: 'd-none'
     = f.hidden_field :avatar_cache
-  - current_user.avatar.present?
-    = link_to 'delete', user_settings_avatar_path, method: :delete
+    /- current_user.avatar.present?
+    = link_to 'delete', user_settings_avatar_path, method: :delete, class: 'setting-avatar-btn neo neo-btn', data: {confirm: 'delete avatar?'}
 #setting-avatar-preview.avatar-upload-modal.d-none.position-fixed.top-0.start-0
   .d-flex.align-items-center.justify-content-center.vh-100.vw-100 style="background-color: rgba(0, 0, 0, 0.5);"
     #confirm-area

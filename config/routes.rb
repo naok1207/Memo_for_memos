@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resource :avatar, only: %i[ update destroy ] do
       post 'confirm', as: 'confirm'
     end
+    resource :account, only: %i[ show update ]
   end
 
   # 検索

@@ -1,4 +1,13 @@
-= form_with model: current_user, url: user_settings_profile_path, local: true, class: 'neo m-4 w-80 p-5' do |f|
-  = f.label :introduction, class: 'd-block'
-  = f.text_area :introduction, class: 'w-100 neo my-4 p-3', style: 'outline: none; border: none; height: 100px; resize: none'
+= form_with model: current_user, url: user_settings_profile_path, local: true, class: 'setting-form' do |f|
+  .form-group
+    = f.label :username
+    .input-box.neo
+      = f.text_field :username, class: 'neo-sink'
+  .form-group
+    = f.label :introduction
+    .input-box.neo
+      = f.text_area :introduction, class: 'neo-sink'
   = f.submit class: 'neo neo-btn p-2 d-block'
+
+= render 'user_settings/avatar'
+#data.d-none data-username="#{current_user.username}"

@@ -14,6 +14,10 @@ $bg-color: rgba(230,232,238, 1);
   font-weight: 500;
 }
 
+input,textarea {
+  background-color: $bg-color;
+}
+
 textarea {
   outline: none;
   border: none;
