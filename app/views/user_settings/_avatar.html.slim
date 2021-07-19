@@ -10,9 +10,9 @@
     = f.hidden_field :avatar_cache
     /- current_user.avatar.present?
     = link_to 'delete', user_settings_avatar_path, method: :delete, class: 'setting-avatar-btn neo neo-btn', data: {confirm: 'delete avatar?'}
-#setting-avatar-preview.avatar-upload-modal.d-none.position-fixed.top-0.start-0
-  .d-flex.align-items-center.justify-content-center.vh-100.vw-100 style="background-color: rgba(0, 0, 0, 0.5);"
-    #confirm-area
-      img#setting-avatar-preview-img style="width: 300px; height: 300px; object-fit: cover;"
+#setting-avatar-preview.avatar-upload-modal.d-none
+  .modal-wrapper
+    #confirm-area.modal-container
+      img#setting-avatar-preview-img.modal-img.neo
       #update-form
-      button#setting-avatar-cancel-button cancel
+      button#setting-avatar-cancel-button.modal-button.neo.neo-btn cancel
