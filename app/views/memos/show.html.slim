@@ -1,13 +1,27 @@
-- unless @memo.user == current_user
-  .memo-menu
-    #bookmark
-      = render 'bookmarks/form'
-= @memo.impressionist_count
-.mt-7.ms-2.neo.min-h-90.max-h-90.pt-3
-  #memo-title
-    = @memo.title
-  #memo-body.memo-body.markdown-body.neo
-    = markdown @memo.body
-= link_to :back, class: 'header-link neo neo-btn' do
-  = image_pack_tag "media/images/icon-forward.svg", size: '30x30', class: 'svg-rotate'
+.d-flex.h-100.w-100
+  #memos.memos.main-container
+    ul.memos-list
+      li.memo-title
+        #memo-title.neo
+          = image_pack_tag "media/images/icon-file.svg", class: "memo-name-svg", size: "20x20"
+          | #{@memo.title}
+    .neo.memo-container
+      #memo-body.memo-body.markdown-body.neo
+        = markdown @memo.body
+      ul.memo-tags
+        h5 タグ
+        = render partial: 'categories/memos/tag', collection: @tags
+      ul.memo-impression
+        li.neo.neo-btn.memo-impression-item=link_to '#' do
+          | PV
+          = @memo.impressionist_count
+        - if @memo.user == current_user
+          li.neo.neo-btn.memo-impression-item= link_to '#' do
+            = image_pack_tag "media/images/icon-book-mark.svg", class: "memos-svg", size: "20x20"
+            = @memo.bookmarks.count
+        - else
+          li.neo.neo-btn.memo-impression-item#bookmark
+            = render 'bookmarks/form'
+      = link_to :back, class: 'neo neo-btn search-back' do
+        = image_pack_tag "media/images/icon-forward.svg", size: '30x30', class: 'svg-rotate'
 = javascript_pack_tag 'markdown'

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resource :avatar, only: %i[ update destroy ] do
       post 'confirm', as: 'confirm'
     end
+    resource :account, only: %i[ show update ]
   end
 
   # 検索
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
 
 
   # ユーザ関連
-  resources :users, param: :username, path: '/', only: %i[ show create edit update destroy ] do
+  resources :users, param: :username, path: '/', only: %i[ show create destroy ] do
     resources :tags, param: :name, controller: 'users/tags', only: %i[ index show ]
     resource :profile, only: %i[ edit update ]
     # スコープでまとめるべき？

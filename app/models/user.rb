@@ -57,11 +57,16 @@ class User < ApplicationRecord
   end
 
   def remove_bookmark(memo)
-    self.bookmarks.destroy(memo)
+    self.bookmark_memos.destroy(memo)
   end
 
   def bookmark?(memo)
     self.bookmark_memos.include?(memo)
+  end
+
+  def update_password(old_password, new_password, new_password_confirmation)
+    return false unless self.valid_password?(old_password)
+    self.update(password: new_password, password_confirmation: new_password_confirmation)
   end
 
   private

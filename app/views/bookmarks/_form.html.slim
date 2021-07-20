@@ -1,6 +1,7 @@
 - if current_user.bookmark?(@memo)
   = link_to bookmarks_path(memo_id: @memo.id), method: :delete, remote: true do
-    = image_pack_tag "media/images/icon-book-mark.svg", size: '30x30', class: 'svg bookmark'
+    svg[xmlns="http://www.w3.org/2000/svg" viewbox="0 0 64 64" stroke-width="3" stroke="currentColor" fill="none" class='svg bookmark']
+      path[d="M51,55.4,32.18,39A1,1,0,0,0,31,39L13,55.34a1,1,0,0,1-1.6-.8V9.41a1,1,0,0,1,1-1H51.56a1,1,0,0,1,1,1V54.58A1,1,0,0,1,51,55.4Z" stroke-linecap="round"]
 - else
   = link_to bookmarks_path(memo_id: @memo.id), method: :post, remote: true do
     = image_pack_tag "media/images/icon-book-mark.svg", size: '30x30', class: 'svg'

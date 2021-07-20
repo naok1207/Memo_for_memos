@@ -14,6 +14,10 @@ $bg-color: rgba(230,232,238, 1);
   font-weight: 500;
 }
 
+input,textarea {
+  background-color: $bg-color;
+}
+
 textarea {
   outline: none;
   border: none;
@@ -37,31 +41,114 @@ a {
   }
 }
 
-.profile {
-  width: 12%;
+// .profile {
+//   width: 12%;
 
-  &-image {
-    width: 150px;
-    height: 150px;
-    &-svg {
-      display: block;
-      margin: auto;
-      transform: translateY(20px);
+//   &-image {
+//     width: 150px;
+//     height: 150px;
+//     &-svg {
+//       display: block;
+//       margin: auto;
+//       transform: translateY(20px);
+//     }
+//   }
+//   &-detail {
+//     overflow-wrap: break-word;
+//   }
+//   &-list {
+//     margin-top: 30px;
+//     &-item {
+//       margin-top: 50px;
+//     }
+//   }
+//   &-link {
+//     display: inline-block;
+//     width: 100%;
+//     text-align: center;
+//   }
+// }
+
+.user {
+  .user-sidebar {
+    position: relative;
+    padding: 10px 30px;
+    margin-right: 15px;
+    .user-image-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 220px;
+      .user-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        .user-image-svg {
+          display: block;
+          margin: auto;
+          transform: translateY(20px);
+        }
+      }
     }
-  }
-  &-detail {
-    overflow-wrap: break-word;
-  }
-  &-list {
-    margin-top: 30px;
-    &-item {
-      margin-top: 50px;
+    .user-profile {
+      padding: 10px 20px;
+      overflow-wrap: break-word;
+      margin-bottom: 20px;
     }
+    .user-menu {
+      width: 100%;
+      .user-menu-item {
+        width: 180px;
+        margin-inline: auto;
+        margin-top: 10px;
+        .user-menu-link {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .calender {
+        margin: 0;
+        // position: absolute;
+        // bottom: 30px;
+      }
+    }
+
   }
-  &-link {
-    display: inline-block;
+  .user-main-container {
+    height: 100%;
     width: 100%;
-    text-align: center;
+    padding: 30px;
+    overflow-y: scroll;
+
+    #search_content_user_form {
+      display: inline-block;
+      margin-left: 60px;
+      #search-content-form {
+        padding: 2px !important;
+        border-radius: 8px;
+      }
+    }
+    .content-list {
+      &-header {
+        min-width: 100%;
+        width: 100%;
+        max-width: 100%;
+        margin: 15px;
+      }
+      &-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        margin-left: 45px;
+        &-svg {
+          display: block;
+          margin: auto;
+          transform: translateY(10px);
+        }
+      }
+    }
   }
 }
 
@@ -129,13 +216,13 @@ a {
 .categories {
   &-list {
     display: flex;
+    margin-bottom: 15px;
+    margin-left: 10px;
     .category-name {
       margin-right: 20px;
       padding: 0;
     }
     #category-name {
-      margin-top: 13px;
-      margin-left: 10px;
       padding: 12px;
       border-radius: 4px;
     }
@@ -144,18 +231,18 @@ a {
       margin-right: 10px;
     }
     &-item {
-      margin: 25px 20px;
+      margin-right: 15px;
       .category-link {
-        padding: 15px;
+          padding: 15px;
         .categories-svg {
+          margin-top: 10px;
           transform: translateY(25%);
         }
       }
     }
-    #category-show-form {
-      margin-left: 20px;
+    #category-show-form, #own_memo_search_form, #search_content_category_form {
+      margin-left: 15px;
       form {
-        margin-top: 16px;
         padding: 2px;
         border-radius: 8px;
       }
@@ -177,20 +264,18 @@ a {
 .memos {
   &-list {
     display: flex;
+    margin-bottom: 15px;
     .memo-title {
       margin-right: 20px;
       padding: 0;
     }
     #memo-title {
-      margin-top: 13px;
       margin-left: 10px;
       padding: 12px;
       border-radius: 4px;
     }
     .memo-status {
-      margin-top: 13px;
       padding: 12px;
-      margin-bottom: 13px;
       border-radius: 4px;
     }
     .memo-name-svg {
@@ -198,10 +283,11 @@ a {
       margin-right: 10px;
     }
     &-item {
-      margin: 25px 20px;
+      margin-inline: 20px;
       .memo-link {
         padding: 15px;
         .memos-svg {
+          margin-top: 12px;
           transform: translateY(25%);
         }
       }
@@ -226,12 +312,61 @@ a {
       }
     }
   }
+  .memo-container {
+    position: relative;
+    padding: 30px;
+  }
+  .index-memo-container {
+    position: relative;
+    padding: 30px;
+    // min-height: 100%;
+  }
   .memo-body {
-    padding: 30px 30px;
-    margin: 0 auto;
+    padding: 30px;
+    margin-inline: auto;
     width: 750px;
+    height: 100%;
+    overflow-y: scroll;
+
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+  }
+  .memo-tags {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 150px;
+    &-item {
+      width: 100%;
+      border-radius: 4px;
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+  }
+
+  .memo-impression {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 150px;
+    &-item {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      padding: 5px 20px;
+    }
+  }
+  #bookmark {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    svg, img {
+      transform: translate(-10px, 10px);
+    }
   }
   .memo-form {
+    height: calc(100% - 75px);
     .memo-title {
       padding: 0;
       margin-top: 3px;
@@ -246,6 +381,67 @@ a {
           margin-left: 10px;
         }
       }
+    }
+    .memo-form-container {
+      position: relative;
+      padding: 30px;
+      height: 100%;
+      .tag_list {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 150px;
+        #tag_texts {
+          width: 100%;
+          padding-top: 10px;
+          div {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+          }
+        }
+        .tag-input-box {
+          width: 100%;
+          padding: 2px;
+          margin-top: 15px;
+          border-radius: 10px;
+        }
+        #tag_input {
+          width: 100%;
+          // font-size: 1rem;
+          border: none;
+          background-color: $bg-color;
+          border-radius: 8px;
+          padding: 10px;
+          outline: none;
+        }
+      }
+      .status_list {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 230px;
+        // &-item {
+        //   width: 100%;
+        //   border-radius: 4px;
+        //   margin-bottom: 10px;
+        //   padding: 5px 20px;
+        // }
+        .complete-status, .public-status {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          select {
+            width: 120px;
+          }
+        }
+      }
+    }
+    #memo-body {
+      width: 750px;
+      height: 100%;
+      margin-inline: auto;
     }
     input[type="text"] {
       // font-size: 1rem;
@@ -264,7 +460,7 @@ a {
       margin: 0 auto;
       width: 750px;
       border-radius: 20px;
-      min-height: 500px;
+      height: 100%;
       resize: none;
     }
     input[type="submit"] {
@@ -281,11 +477,24 @@ a {
   justify-content: space-between;
   padding-left: 50px;
   padding-right: 50px;
+  max-height: 100%;
+
+  &::before{
+    order:1;
+  }
+
+  &::before, &::after, .dummy {
+    content: "";
+    display: block;
+    width: 300px;
+    margin-inline: auto;
+  }
 
   .neo-card {
     width: 300px;
     margin-top: 15px;
     margin-bottom: 15px;
+    margin: 15px auto;
     border-radius: 8px;
 
     &:hover {
@@ -303,30 +512,29 @@ a {
   // border-radius: 10px;
 }
 
-#tag-select-form {
-  margin-left: auto;
-  form {
-    margin-top: 16px;
-    padding: 2px;
-    border-radius: 8px;
-  }
-  input[type="text"] {
-    // font-size: 1rem;
-    border: none;
-    background-color: $bg-color;
-    border-radius: 8px;
-    padding: 10px 20px;
-    outline: none;
-  }
-  input[type="submit"] {
-    padding: 10px;
-  }
-}
+// #tag-select-form {
+//   margin-left: auto;
+//   form {
+//     margin-top: 16px;
+//     padding: 2px;
+//     border-radius: 8px;
+//   }
+//   input[type="text"] {
+//     // font-size: 1rem;
+//     border: none;
+//     background-color: $bg-color;
+//     border-radius: 8px;
+//     padding: 10px 20px;
+//     outline: none;
+//   }
+//   input[type="submit"] {
+//     padding: 10px;
+//   }
+// }
 
 // 検索ボタン
 // 同様のデザインが多いのであとでまとめる
 #search-content-form {
-  margin-left: 20px;
   form {
     margin-top: 16px;
     padding: 2px;
@@ -346,7 +554,9 @@ a {
 }
 
 .bookmark {
-  background-color: darkcyan;
+  fill: black;
+  width: 30px;
+  height: 30px;
 }
 
 .mind-card-list {
@@ -402,4 +612,16 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
+}
+
+.search-back {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+  .svg-rotate {
+    transform: rotate(180deg) translate(-10px ,-0.6rem);
+  }
 }

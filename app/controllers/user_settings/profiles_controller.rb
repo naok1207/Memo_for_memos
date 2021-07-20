@@ -12,6 +12,6 @@ class UserSettings::ProfilesController < UserSettingsController
 
   private
   def user_params
-    params.require(:user).permit(:introduction)
+    params.require(:user).permit(:username, :introduction)
   end
 end

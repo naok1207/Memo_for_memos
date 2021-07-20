@@ -9,9 +9,9 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application'
-  body.d-flex.p-3.justify-content-center.align-item-center
+  body
     .neo-wrapper
-      main.d-flex.min-vh-85
-        .container.neo.min-h-90.d-flex.position-relative
-          .col-md-9.col-12.mx-auto
-            = yield
+      header
+        = render 'layouts/header'
+      main.neo.w-100
+        = yield

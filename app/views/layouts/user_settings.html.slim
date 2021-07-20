@@ -8,18 +8,23 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_pack_tag 'application'
+    = stylesheet_pack_tag 'user_settings'
     = javascript_pack_tag 'application'
-  body.d-flex.p-3.justify-content-center.align-item-center
+  body
     .neo-wrapper
       header
         = render 'layouts/header'
-      main.d-flex.min-vh-85
-        .container.neo.min-h-90.d-flex.position-relative
-          .col-md-3.col-12
-            = render 'user_settings/memu'
-          .col-md-9.col-12
-            = yield
-          = render 'user_settings/avatar'
-          #data.d-none data-username="#{current_user.username}"
-      footer
-        = render 'layouts/footer'
+      main.new.w-100
+        .user.d-flex.h-100.w-100
+          .user-sidebar.neo
+            .user-image-box
+              .user-image.neo
+                - if current_user.avatar.present?
+                  = image_tag current_user.avatar.url, size: "140x140", style: "border-radius: 150px; transform: translate(5px, 5px);"
+                - else
+                  = image_pack_tag "media/images/icon-person-male.svg", class: "user-image-svg", size: "100x100"
+            ul.user-menu
+              = render 'user_settings/memu'
+          .user-main-container.neo
+            .user-setting-container.neo
+              = yield

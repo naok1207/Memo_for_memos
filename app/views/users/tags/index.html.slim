@@ -1,2 +1,12 @@
-.d-flex.justify-content-wrap
-  = render @tags
+.d-flex.h-100.w-100
+  #memos.memos.main-container
+    .neo.index-memo-container
+      .content-list.h-100
+         #memos-list.neo-card-list
+          .content-list-header
+            .content-list-image.neo
+              = image_pack_tag "media/images/icon-tag.svg", class: "content-list-image-svg", size: "20x20"
+          = render @tags
+          .dummy
+          .dummy
+          .dummy

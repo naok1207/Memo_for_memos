@@ -1,33 +1,36 @@
-.d-flex
-  .profile.mt-5.ms-5
-    .neo.rounded-circle.profile-image
-      - if @user.avatar.present?
-        = image_tag @user.avatar.url, size: "140x140", style: "border-radius: 150px; transform: translate(5px, 5px);"
-      - else
-        = image_pack_tag "media/images/icon-person-male.svg", class: "profile-image-svg", size: "100x100"
-    .profile-detail.mt-4
+.user.d-flex.h-100.w-100
+  .user-sidebar.neo
+    .user-image-box
+      .user-image.neo
+        - if @user.avatar.present?
+          = image_tag @user.avatar.url, size: "140x140", style: "border-radius: 150px; transform: translate(5px, 5px);"
+        - else
+          = image_pack_tag "media/images/icon-person-male.svg", class: "user-image-svg", size: "100x100"
+    .user-profile.neo
       p.profile-username= @user.username
       p.profile-body#profile-body
         = @user.introduction
         - if logged_in? && @user == current_user
           = render 'users/form_introduction'
+    ul.user-menu
       - if logged_in? && @user == current_user
-        ul.profile-list
-          /li.profile-list-item= link_to 'プロフィール編集', edit_user_profile_path(current_user), class: "neo neo-btn profile-link"
-          li.profile-list-item
-            a.neo.neo-btn.profile-link#edit-introduction-button プロフィール編集
-          li.profile-list-item= link_to 'ユーザ編集', edit_user_path, class: "neo neo-btn profile-link"
-          li.profile-list-item= link_to 'マインド', minds_path, class: "neo neo-btn profile-link"
-          li.profile-list-item= link_to '退会', user_path, method: :delete, class: "neo neo-btn profile-link"
-          li.profile-list-item= link_to 'ログアウト', logout_path, method: :delete, class: "neo neo-btn profile-link"
+        li.user-menu-item
+          a.neo.neo-btn.user-menu-link#edit-introduction-button プロフィール編集
+        li.user-menu-item= link_to 'マインド', minds_path, class: "neo neo-btn user-menu-link"
+        li.user-menu-item= link_to 'ログアウト', logout_path, method: :delete, class: "neo neo-btn user-menu-link"
       - else
-        .neo.calender.other-user-calender.mt-5#calender
+        .neo.calender#calender
           = render 'users/calender'
-  .dashboard.neo-sink.vh-65.m-5.col
-    /- unless logged_in? && @user == current_user
-    #search_content_user_form
+  .user-main-container.neo
+    #search_content_user_form.d-inline-block
       = render partial: 'searches/contents/form', locals: { url: searches_contents_users_path, user: @user }
-    .mx-auto
-      #memos-list.neo-card-list
-        h3.mt-3.w-100 最近のメモ
-        = render partial: 'memos/memo', collection: @memos
+    .content-list
+      .content-list-header
+        .content-list-image.neo
+          = image_pack_tag "media/images/icon-file.svg", class: "content-list-image-svg", size: "20x20"
+    #memos-list.neo-card-list
+      h3.m-3.w-100 最近のメモ
+      = render partial: 'memos/memo', collection: @memos
+      .dummy
+      .dummy
+      .dummy

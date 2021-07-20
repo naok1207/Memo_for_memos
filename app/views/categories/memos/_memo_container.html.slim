@@ -5,12 +5,20 @@ ul.memos-list
       | #{@memo.title}
   li.memos-list-item.neo.memo-status= @memo.status
   li.memos-list-item.me-auto.neo.memo-status= @memo.public_status
-  li.memos-list-item.ms-auto= link_to edit_category_memo_path(@category, @memo), class: 'neo neo-btn memo-link', remote: true do
+  li.memos-list-item.ms-auto= link_to edit_category_memo_path(@category, @memo), class: 'neo neo-btn memo-link', id: 'edit-memo-link', remote: true do
     = image_pack_tag "media/images/icon-pencil.svg", class: "memos-svg", size: "20x20"
   li.memos-list-item= link_to category_memo_path(@category, @memo), method: :delete, class: 'neo neo-btn memo-link' do
     = image_pack_tag "media/images/icon-trash.svg", class: "memos-svg", size: "20x20"
-.mt-7.ms-2.neo.min-h-90.max-h-90.pt-3
+.neo.memo-container
   #memo-body.memo-body.markdown-body.neo
     = markdown @memo.body
-  #memo-tags
-    = render 'tags'
+  ul.memo-tags
+    h5 タグ
+    = render partial: 'categories/memos/tag', collection: @tags
+  ul.memo-impression
+    li.neo.neo-btn.memo-impression-item=link_to '#' do
+      | PV
+      = @memo.impressionist_count
+    li.neo.neo-btn.memo-impression-item= link_to '#' do
+      = image_pack_tag "media/images/icon-book-mark.svg", class: "memos-svg", size: "20x20"
+      = @memo.bookmarks.count

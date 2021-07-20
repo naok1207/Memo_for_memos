@@ -5,6 +5,7 @@ class Categories::MemosController < ApplicationController
   def show
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
+    @tags = @memo.tags
   end
 
   def new
@@ -25,14 +26,15 @@ class Categories::MemosController < ApplicationController
   def edit
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
-    @tag_list = @memo.tags.pluck(:name).join(' ')
+    @tag_list = @memo.tags
   end
 
   def update
     @category = current_user.categories.find_by!(name: params[:category_name])
     @memo = @category.memos.find(params[:id])
     @memo.update(memo_params)
-    @memo.save_tags(params[:tags_ids].split ) if params[:tags_ids].present?
+    @memo.save_tags(params[:tags_ids].split(',') ) if params[:tags_ids].present?
+    @tags = @memo.tags
   end
 
   def destroy

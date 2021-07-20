@@ -8,8 +8,10 @@ require("@rails/activestorage").start()
 require("channels")
 
 import '../stylesheets/application'
+import '../stylesheets/user_settings'
 require('jquery')
 
 import '../javascripts/bootstrap_js_files.js'
 import '../javascripts/user_settings.js'
+import '../javascripts/memo.js'
 const images = require.context('../images/', true)

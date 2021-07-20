@@ -1,7 +1,7 @@
-.d-flex
-  .sidebar.col-2.mt-3.mx-2.vh-70
+.d-flex.h-100
+  .sidebar
     = render 'layouts/sidebar'
-  .categories.col
+  .categories.main-container
     ul.categories-list
       li.categories-list-item= link_to new_category_path, remote: true, class: 'neo neo-btn category-link' do
         = image_pack_tag "media/images/icon-folder-new.svg", class: "categories-svg", size: "20x20"
@@ -10,9 +10,14 @@
           = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path }
       li
         #category-show-form
-    .mt-7.ms-2.neo.min-h-90.max-h-90
-      .mx-auto
+    .neo.category-container
+      .content-list
         #categories-list.neo-card-list
+          .content-list-header
+            .content-list-image.neo
+              = image_pack_tag "media/images/icon-folder.svg", class: "content-list-image-svg", size: "20x20"
           = render @categories
-        .neo.neo-hr.my-1
         #memos-list.neo-card-list.d-none
+          .content-list-header
+            .content-list-image.neo
+              = image_pack_tag "media/images/icon-file.svg", class: "content-list-image-svg", size: "20x20"

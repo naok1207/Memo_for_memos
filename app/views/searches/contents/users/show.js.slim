@@ -1,2 +1,4 @@
 |
   $('#memos-list').html("#{ j render partial: "categories/memos/memo", collection: @memos }");
+  $('#memos-list').prepend('<h3 class="m-3 w-100">検索結果</h3>');
+  $('#memos-list').append('<div class="dummy"></div><div class="dummy"></div><div class="dummy"></div>')
