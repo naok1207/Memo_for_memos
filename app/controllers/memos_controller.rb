@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :require_login
+  before_action :require_login, only: :index
   layout 'layouts/searches', only: :show
 
   def index

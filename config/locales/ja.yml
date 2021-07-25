@@ -16,3 +16,39 @@ ja:
       - 木
       - 金
       - 土
+  bookmarks:
+    show:
+      title: ブックマーク
+  categories:
+    index:
+      title: カテゴリ一覧
+    show:
+      title: カテゴリ詳細
+    memos:
+      show: メモ詳細
+  memos:
+    index: メモ一覧
+    show: メモ詳細
+  minds:
+    show: マインドマップ
+  searches:
+    show: 検索
+  sessions:
+    new: ログインページ
+  tags:
+    index: タグ一覧
+    show: タグ詳細
+  user_settings:
+    account:
+      show: アカウント編集
+    avatars:
+    profiles:
+      show: プロフィール編集
+  users:
+    new: サインアップ
+    show: ユーザ詳細
+    calenders:
+      calender: カレンダー詳細
+    tags:
+      index: ユーザタグ一覧
+      show: ユーザタグ詳細
