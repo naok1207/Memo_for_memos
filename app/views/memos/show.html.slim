@@ -1,3 +1,7 @@
+- unless @memo.whole_release? && @memo.complete?
+  - set_meta_tags noindex: true, nofollow: true
+- description = strip_tags(markdown(@memo.body)).truncate(300)
+- set_meta_tags title: @memo.title, description: description, keywords: @memo.tags.pluck(:name).join(','), og: { title: @memo.title, description: description, type: 'memo', image: ogp_url(@memo.title) }, twitter: { title: @memo.title }
 .d-flex.h-100.w-100
   #memos.memos.main-container
     ul.memos-list
@@ -10,7 +14,7 @@
         = markdown @memo.body
       ul.memo-tags
         h5 タグ
-        = render partial: 'categories/memos/tag', collection: @tags
+        = render partial: 'categories/memos/tag', collection: @memo.tags
       ul.memo-impression
         li.neo.neo-btn.memo-impression-item=link_to '#' do
           | PV
