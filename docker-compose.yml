@@ -8,10 +8,12 @@ services:
       - EDITOR=vim
       - REDIS_URL=redis://redis:6379
       - WEBPACKER_DEV_SERVER_HOST=webpacker
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+      - DB_HOST=db
+    command: bundle exec unicorn -p 3000 -c /app/config/unicorn.conf.rb
     volumes:
       - .:/app
       - /var/tmp
+      - public:/app/public
       - sockets:/app/tmp/sockets
       - bundle:/usr/local/bundle
       - node_modules:/app/node_modules
@@ -23,6 +25,7 @@ services:
       - redis
     stdin_open: true
     tty: true
+
   db:
     image: mysql:8.0
     ports:
@@ -34,12 +37,27 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       TZ: "Asia/Tokyo"
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: .
+    ports:
+      - '80:80'
+    restart: always
+    volumes:
+      - public:/app/public
+      - sockets:/app/tmp/sockets
+    depends_on:
+      - app
+
   redis:
     image: redis:latest
     ports:
       - 6379:6379
     volumes:
       - redis:/data
+
   webpacker:
     build: .
     command: ./bin/webpack-dev-server
@@ -52,7 +70,9 @@ services:
       - packs:/app/public/packs
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+
 volumes:
+  public:
   sockets:
   redis:
   mysql:

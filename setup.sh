@@ -11,7 +11,7 @@ if [ ${RAILS_ENV} = "staging" -o ${RAILS_ENV} = "production" ]; then
   # staging or production環境の処理
   yarn install
   # bundle exec rails assets:precompile
-  bundle exec rails db:create && rails db:migrate
+  # bundle exec rails db:create && rails db:migrate
   rm -f tmp/pids/server.pid
-  bundle exec rails s -p 3000 -b '0.0.0.0'
+  # bundle exec rails s -p 3000 -b '0.0.0.0'
 fi
