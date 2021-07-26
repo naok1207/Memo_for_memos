@@ -1,0 +1,81 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .
+    environment:
+      - EDITOR=vim
+      - REDIS_URL=redis://redis:6379
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
+      - DB_HOST=db
+    command: bundle exec unicorn -p 3000 -c /app/config/unicorn.conf.rb
+    volumes:
+      - .:/app
+      - /var/tmp
+      - public:/app/public
+      - sockets:/app/tmp/sockets
+      - bundle:/usr/local/bundle
+      - node_modules:/app/node_modules
+      - packs:/app/public/packs
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - redis
+    stdin_open: true
+    tty: true
+
+  db:
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      TZ: "Asia/Tokyo"
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: .
+    ports:
+      - '80:80'
+    restart: always
+    volumes:
+      - public:/app/public
+      - sockets:/app/tmp/sockets
+    depends_on:
+      - app
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
+    ports:
+      - '3035:3035'
+    volumes:
+      - .:/app:cached
+      - bundle:/usr/local/bundle
+      - node_modules:/myapp/node_modules
+      - packs:/app/public/packs
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+
+volumes:
+  public:
+  sockets:
+  redis:
+  mysql:
+  bundle:
+  node_modules:
+  packs:
