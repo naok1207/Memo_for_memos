@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    environment:
+      - RAILS_ENV=production
+      - CLOUDINARY_CLOUD_NAME=dwn5uzdut
+      - CLOUDINARY_API_KEY=925765533465931
+      - CLOUDINARY_API_SECRET=tOzATY_i4L6KmfnUQkHrj4gJb0A
+      - EDITOR=vim
+      - REDIS_URL=redis://redis:6379
+    command: bundle exec unicorn -p 3000 -c /app/config/unicorn.conf.rb
+    volumes:
+      - .:/app
+      - /var/tmp
+      - public:/app/public
+      - sockets:/app/tmp/sockets
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+    stdin_open: true
+    tty: true
+
+  nginx:
+    build:
+      context: ./docker/nginx
+    ports:
+      - '80:80'
+    restart: always
+    volumes:
+      - public:/app/public
+      - sockets:/app/tmp/sockets
+    depends_on:
+      - app
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
+volumes:
+  public:
+  sockets:
+  redis:
+
