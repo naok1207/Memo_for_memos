@@ -1,4 +1,7 @@
 cloudinary:
-  cloud_name: <%= ENV.fetch("CLOUDINARY_CLOUD_NAME") %>
-  # api_key:    <%= ENV.fetch("CLOUDINARY_API_KEY") %>
-  # api_secret: <%= ENV.fetch("CLOUDINARY_API_SECRET") %>
+  cloud_name: <%= Rails.application.credentials.cloudinary[:cloud_name] %>
+  api_key: <%= Rails.application.credentials.cloudinary[:api_key] %>
+  api_secret: <%= Rails.application.credentials.cloudinary[:api_secret] %>
+
+redis:
+  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379" } %>
