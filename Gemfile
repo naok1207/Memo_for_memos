@@ -28,6 +28,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'annotate'
 gem 'carrierwave'
 gem 'config'
+gem 'fog-aws'
 gem 'foreman'
 gem 'impressionist'
 gem 'meta-tags'
