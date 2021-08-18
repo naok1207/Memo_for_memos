@@ -8,10 +8,19 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 WORKDIR /app
 COPY Gemfile .
 COPY Gemfile.lock .
+COPY package.json .
+COPY yarn.lock .
 RUN bundle install
+RUN yarn install
 COPY . /app
 
 RUN chmod +x setup.sh
-CMD /app/setup.sh
+RUN sh setup.sh
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
 EXPOSE 3000
 
+CMD ["rails", "server", "-b", "0.0.0.0"]
