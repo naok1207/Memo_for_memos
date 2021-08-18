@@ -54,6 +54,3 @@ services:
 volumes:
   redis:
   mysql:
-  bundle:
-  node_modules:
-  packs:
