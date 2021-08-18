@@ -61,7 +61,14 @@ services:
     ports:
       - '3035:3035'
     volumes:
+<<<<<<< HEAD
       - .:/app
+=======
+      - .:/app:cached
+      - bundle:/usr/local/bundle
+      - node_modules:/myapp/node_modules
+      - packs:/app/public/packs
+>>>>>>> 860a994dbc3eac70914851a9c067ff0a87cdb60d
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
