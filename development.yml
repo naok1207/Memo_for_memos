@@ -51,7 +51,7 @@ services:
     volumes:
       - .:/app:cached
       - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
+      - node_modules:/myapp/node_modules
       - packs:/app/public/packs
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
