@@ -17,11 +17,11 @@ default: &default
   port: <%= ENV.fetch('MYSQL_PORT', 3306) %>
   username: <%= ENV.fetch('MYSQL_USERNAME', 'root') %>
   password: <%= ENV.fetch('MYSQL_PASSWORD', '') %>
+  host: <%= ENV.fetch('DB_HOST', '') %>
 
 development:
   <<: *default
   database: Memo_for_memos_development
-  host: <%= ENV.fetch('DB_HOST', '') %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -56,4 +56,3 @@ production:
   database: <%= Rails.application.credentials.rds[:database] %>
   username: <%= Rails.application.credentials.rds[:username] %>
   password: <%= Rails.application.credentials.rds[:password] %>
-
