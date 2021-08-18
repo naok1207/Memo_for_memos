@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>404 Not Found - Memomo</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sofia-pro, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+    }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    body {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(230, 232, 238, 1);
+    }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .wrapper {
+      position: absolute;
+      inset: 2vw;
+      padding: 0 30px 50px 30px;
+      background: linear-gradient(to right bottom, #F5F5F9, #E3E4EA);
+      border-radius: 1vh;
+      box-shadow: -10px -10px 16px white, 10px 10px 16px rgb(209 205 199 / 50%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    .error-code {
+      font-size: 10rem;
+      font-weight: 700;
+      text-shadow: -5px -5px 10px #ffffff, 5px 5px 10px #d1cdc7;
+      color: #efefef;
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .error-text {
+      font-size: 4rem;
+      color: #c7c2bc;
+    }
+
+    .error-message {
+      margin-bottom: 10px;
+    }
+
+    .home-link {
+      display: table;
+      margin-inline: auto;
+      margin-top: 20px;
+    }
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+<body>
+  <div class="wrapper">
+    <div class="inner">
+      <span class="error-code">404</span>
+      <span class="error-text">Not Found</span>
+      <p class="error-message">お探しのページは一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。</p>
+      <p class="error-message">また、URL、ファイル名にタイプミスがないか再度ご確認ください。</p>
+      <a class="home-link" href="https://www.memomo.tk">Memomo トップページへ</a>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>
