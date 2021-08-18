@@ -12,10 +12,6 @@ services:
     command: bundle exec rails server -p 3000 -b '0.0.0.0'
     volumes:
       - .:/app
-      - /var/tmp
-      - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
-      - packs:/app/public/packs
     ports:
       - '3000:3000'
     depends_on:
@@ -48,17 +44,13 @@ services:
     command: ./bin/webpack-dev-server
     ports:
       - '3035:3035'
+    depends_on:
+      - app
     volumes:
-      - .:/app:cached
-      - bundle:/usr/local/bundle
-      - node_modules:/myapp/node_modules
-      - packs:/app/public/packs
+      - .:/app
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
 volumes:
   redis:
   mysql:
-  bundle:
-  node_modules:
-  packs:
