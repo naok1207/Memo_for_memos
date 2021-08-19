@@ -2,6 +2,7 @@ class Searches::ContentsController < ApplicationController
   before_action :set_search_content
 
   private
+
   def set_search_content
     @search_content = SearchContent.new(search_content_params)
   end

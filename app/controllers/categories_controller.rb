@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :require_login
-  before_action :generate_calender, only: %i[ index show update ]
-  before_action :set_search_content_form, only: %i[ index show ]
+  before_action :generate_calender, only: %i[index show update]
+  before_action :set_search_content_form, only: %i[index show]
 
   def index
     @categories = current_user.categories.main.name_asc
@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     @categories = @category.children
     @memos = @category.memos.title_asc
     add_category_name
-  rescue
+  rescue StandardError
     redirect_to categories_path, alert: "not found #{params[:name]} category"
   end
 
@@ -27,14 +27,14 @@ class CategoriesController < ApplicationController
 
   def create
     category = current_user.categories.new(category_params)
-    if category.save
-      @categories = if category_params[:parent_id].present?
-                      parent = current_user.categories.find(category_params[:parent_id])
-                      parent.children.order(name: :asc)
-                    else
-                      current_user.categories.where(parent_id: nil).name_asc
-                    end
-    end
+    return unless category.save
+
+    parent_id = category_params[:parent_id]
+    @categories = if parent_id.present?
+                    current_user.categories.find(parent_id).children
+                  else
+                    current_user.categories.where(parent_id: nil)
+                  end
   end
 
   def edit
@@ -43,9 +43,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category = current_user.categories.find_by!(name: params[:name])
-    if @category.update(category_params)
-      redirect_to @category
-    end
+    redirect_to @category if @category.update(category_params)
   end
 
   def destroy
@@ -53,7 +51,7 @@ class CategoriesController < ApplicationController
     @category.children_destroy_all
     @category.memos.destroy_all
     @category.destroy!
-    redirect_to @category.parent.present? ? @category.parent : categories_path
+    redirect_to @category.parent.presence || categories_path
   end
 
   def search
@@ -62,6 +60,7 @@ class CategoriesController < ApplicationController
   end
 
   private
+
   def category_params
     params.require(:category).permit(:name, :parent_id)
   end

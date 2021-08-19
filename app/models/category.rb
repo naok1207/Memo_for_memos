@@ -25,7 +25,7 @@ class Category < ApplicationRecord
 
   belongs_to :user
   # 上位階層のカテゴリ
-  belongs_to :parent, class_name: 'Category', foreign_key: 'parent_id', optional: true
+  belongs_to :parent, class_name: 'Category', optional: true
   # 下位階層のカテゴリ
   has_many :children, class_name: 'Category', foreign_key: 'parent_id', dependent: :destroy
   validates :name, presence: true, uniqueness: { scope: :user_id }
@@ -34,25 +34,24 @@ class Category < ApplicationRecord
 
   scope :name_asc, -> { order name: :asc }
   # 最上位階層のカテゴリの絞り込み
-  scope :main,   -> { where parent_id: nil }
+  scope :main, -> { where parent_id: nil }
+  default_scope { name_asc }
 
   def to_param
     name
   end
 
   before_create do
-    if (self.parent_id.present?)
-      category = Category.find(self.parent_id)
+    if parent_id.present?
+      category = Category.find(parent_id)
       self.under_category_ids = "#{category.under_category_ids}#{category.id}/"
     end
   end
 
   # 子要素の全てのデータを残さずに削除する
   def children_destroy_all
-    self.children.each do |category|
-      category.children_destroy_all
-    end
-    self.children.destroy_all
-    self.memos.destroy_all
+    children.each(&:children_destroy_all)
+    children.destroy_all
+    memos.destroy_all
   end
 end

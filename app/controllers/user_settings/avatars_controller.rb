@@ -1,9 +1,7 @@
 class UserSettings::AvatarsController < ApplicationController
   def confirm
     @user = User.new(avatar_params)
-    if !@user.avatar.present?
-      @user.avatar.retrieve_from_cache! @user.avatar_cache
-    end
+    @user.avatar.retrieve_from_cache! @user.avatar_cache if @user.avatar.blank?
     @user.avatar_cache = @user.avatar.cache_name
     respond_to do |format|
       data = {}
@@ -18,11 +16,9 @@ class UserSettings::AvatarsController < ApplicationController
     @user.avatar = avatar_params[:avatar]
     @user.avatar_cache = avatar_params[:avatar_cache]
     @user.avatar.retrieve_from_cache! @user.avatar_cache
-    if @user.save
-      redirect_to user_settings_profile_path
-    else
-      # 失敗処理
-    end
+    return unless @user.save
+
+    redirect_to user_settings_profile_path
   end
 
   def destroy
@@ -31,6 +27,7 @@ class UserSettings::AvatarsController < ApplicationController
   end
 
   private
+
   def avatar_params
     params.require(:user).permit(:avatar, :avatar_cache)
   end

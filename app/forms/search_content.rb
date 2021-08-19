@@ -24,7 +24,7 @@ class SearchContent
       current_user.memos.where(category_id: category_ids)
       return search_query.where(category_id: category_ids)
     end
-    return search_query
+    search_query
   end
 
   # 自身のカテゴリを検索する
@@ -34,11 +34,11 @@ class SearchContent
       category_ids = get_category_ids(category)
       return search_query.where(id: category_ids)
     end
-    return search_query
+    search_query
   end
 
   # 関連するカテゴリのidを全て取得する
   def get_category_ids(category)
-    Category.where("under_category_ids LIKE ?", "%/#{category.id}/%").pluck(:id).push(category.id)
+    Category.where('under_category_ids LIKE ?', "%/#{category.id}/%").pluck(:id).push(category.id)
   end
 end

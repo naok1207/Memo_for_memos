@@ -1,0 +1,22 @@
+require: "rubocop-rspec"
+
+RSpec/ContextWording:
+  Enabled: false
+RSpec/DescribedClass:
+  EnforcedStyle: explicit
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 8
+RSpec/ExpectChange:
+  EnforcedStyle: block
+RSpec/ImplicitExpect:
+  Enabled: false
+RSpec/InstanceVariable:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/NestedGroups:
+  Max: 4
+RSpec/ReturnFromStub:
+  Enabled: false
