@@ -25,6 +25,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   attr_accessor :avatar_cache
+
   mount_uploader :avatar, AvatarUploader
   VALID_USERNAME_NGWORD = /login|logout|signup|categories|category|memos|tags/
   VALID_USERNAME_REGEX = /\A[A-Za-z][A-Za-z0-9]*/i
@@ -32,8 +33,8 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
   before_create :generate_access_token
   validates :username, presence: true, uniqueness: true, length: { minimum: 4, maximum: 30 }
-  validates_format_of :username, with: VALID_USERNAME_REGEX
-  validates_format_of :username, without: VALID_USERNAME_NGWORD
+  validates :username, format: { with: VALID_USERNAME_REGEX }
+  validates :username, format: { without: VALID_USERNAME_NGWORD }
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 8, maximum: 24 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -49,27 +50,29 @@ class User < ApplicationRecord
   end
 
   def tags
-    self.memos.map{ |memo| memo.tags }.flatten
+    memos.map(&:tags).flatten
   end
 
   def add_bookmark(memo)
-    self.bookmark_memos << memo
+    bookmark_memos << memo
   end
 
   def remove_bookmark(memo)
-    self.bookmark_memos.destroy(memo)
+    bookmark_memos.destroy(memo)
   end
 
   def bookmark?(memo)
-    self.bookmark_memos.include?(memo)
+    bookmark_memos.include?(memo)
   end
 
   def update_password(old_password, new_password, new_password_confirmation)
-    return false unless self.valid_password?(old_password)
-    self.update(password: new_password, password_confirmation: new_password_confirmation)
+    return false unless valid_password?(old_password)
+
+    update(password: new_password, password_confirmation: new_password_confirmation)
   end
 
   private
+
   def generate_access_token
     self.access_token = loop do
       hex = SecureRandom.hex(10)

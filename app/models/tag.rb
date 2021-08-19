@@ -12,6 +12,6 @@
 #  index_tags_on_name  (name)
 #
 class Tag < ApplicationRecord
-  has_many :memo_tag_relations
+  has_many :memo_tag_relations, dependent: :destroy
   has_many :memos, through: :memo_tag_relations
 end

@@ -8,5 +8,4 @@ class TagsController < ApplicationController
     @memos = @tag.memos
     add_category_name
   end
-
 end

@@ -11,13 +11,15 @@ class Api::MemosController < ApplicationController
   end
 
   protected
+
   def authenticate
-    authenticate_or_request_with_http_token do |token, options|
+    authenticate_or_request_with_http_token do |token, _options|
       @user = User.find_by(access_token: token)
     end
   end
 
   private
+
   def memo_params
     params.require(:memo).permit(:title)
   end

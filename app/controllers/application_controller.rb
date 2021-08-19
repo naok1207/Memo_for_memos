@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   def add_category_name
-    @user = current_user unless @user.present?
+    @user = current_user if @user.blank?
     categories = @user.categories.pluck(:id, :name)
-    @memos = @memos.each{ |memo| memo.category_name = categories.find{|category| category[0] == memo.category_id}[1] }
+    @memos = @memos.each { |memo| memo.category_name = categories.find { |category| category[0] == memo.category_id }[1] }
   end
 end

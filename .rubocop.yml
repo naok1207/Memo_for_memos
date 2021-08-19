@@ -12,6 +12,8 @@ AllCops:
     - 'bin/**/*'
     - 'spec/**/*'
     - 'node_modules/**/*'
+    - 'config/unicorn.conf.rb'
+    - 'app/helpers/*'
   DisplayCopNames: true
 
 Rails:
@@ -47,4 +49,22 @@ Metrics/ParameterLists:
   Max: 12
 
 Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/**/*'
+
+Lint/AssignmentInCondition:
+  Exclude:
+    - 'app/controllers/sessions_controller.rb'
+
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/environments/production.rb'
+
+Rails/InverseOf:
   Enabled: false

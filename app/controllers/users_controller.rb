@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: %i[ edit update destroy ]
+  before_action :require_login, only: :destroy
   before_action :generate_calender, only: :show
   before_action :already_logged_in, only: :new
   before_action :set_search_content_form, only: :show
-  layout 'layouts/basic_auth', only: %i[ new create edit ]
+  layout 'layouts/basic_auth', only: %i[new create edit]
 
   def show
     @user = User.find_by!(username: params[:username])
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :introduction)
   end

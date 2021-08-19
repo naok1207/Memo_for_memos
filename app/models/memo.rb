@@ -31,7 +31,7 @@ class Memo < ApplicationRecord
   before_create :generate_hex_id
   belongs_to :category, optional: true
   belongs_to :user, optional: true
-  has_many :memo_tag_relations
+  has_many :memo_tag_relations, dependent: :destroy
   has_many :tags, through: :memo_tag_relations
   has_many :bookmarks, dependent: :destroy
 
@@ -53,22 +53,22 @@ class Memo < ApplicationRecord
   end
 
   def save_tags(save_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - save_tags
     new_tags = save_tags - current_tags
 
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name: old_name)
+      tags.delete Tag.find_by(name: old_name)
     end
 
     new_tags.each do |new_name|
       memo_tag = Tag.find_or_create_by(name: new_name)
-      self.tags << memo_tag
+      tags << memo_tag
     end
   end
 
   def merge_category_name(user)
     categories = user.categories.pluck(:id, :name)
-    self.each{ |memo| memo.category_name = categories.find{|category| category[0] == memo.category_id}[1] }
+    each { |memo| memo.category_name = categories.find { |category| category[0] == memo.category_id }[1] }
   end
 end
