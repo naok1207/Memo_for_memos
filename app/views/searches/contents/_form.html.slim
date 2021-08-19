@@ -4,4 +4,4 @@
     = f.hidden_field :username, name: :username, value: user.username
   - if defined? category
     = f.hidden_field :category_name, name: :category_name, value: category.name
-  = f.submit class: 'neo neo-btn'
+  = f.submit t('search.submit'), class: 'neo neo-btn'
