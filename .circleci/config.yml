@@ -90,6 +90,6 @@ workflows:
   workflows:
     jobs:
       - rubocop
-      - test
+      - test:
         - requires:
           - rubocop
