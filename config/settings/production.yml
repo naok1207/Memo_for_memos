@@ -1,2 +1,14 @@
-redis:
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379" } %>
+aws:
+  access_key_id: <%= Rails.application.credentials.aws[:access_key_id] %>
+  secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
+
+db:
+  host: <%= Rails.application.credentials.rds[:host] %>
+  database: <%= Rails.application.credentials.rds[:database] %>
+  username: <%= Rails.application.credentials.rds[:username] %>
+  password: <%= Rails.application.credentials.rds[:password] %>
+
+cloudinary:
+  cloud_name: <%= Rails.application.credentials.cloudinary[:cloud_name] %>
+  api_key: <%= Rails.application.credentials.cloudinary[:api_key] %>
+  api_secret: <%= Rails.application.credentials.cloudinary[:api_secret] %>
