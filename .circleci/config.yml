@@ -41,7 +41,7 @@ jobs:
             bundle exec rake db:migrate
       - run:
           name: rubocop
-          command: rubocop
+          command: bundle exec rubocop
   test:
     docker:
       - image: circleci/ruby:3.0.0-node
