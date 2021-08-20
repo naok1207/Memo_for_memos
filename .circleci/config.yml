@@ -91,5 +91,5 @@ workflows:
     jobs:
       - rubocop
       - test:
-        - requires:
+        requires:
           - rubocop
