@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   it "is valid" do
     user = User.new(
       username: "test-user",
-      email: "test.example.com",
+      email: "test@example.com",
       password: "testpass",
       password_confirmation: "testpass"
     )
