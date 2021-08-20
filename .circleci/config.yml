@@ -6,7 +6,8 @@ jobs:
       - image: circleci/ruby:3.0.0-node
         environment:
           RAILS_ENV: test
-          DATABASE_HOST: 127.0.0.1
+          DB_HOST: 127.0.0.1
+          DB_NAME: test
       - image: circleci/mysql:8.0.26-ram
         command: |
           mysqld --default-authentication-plugin=mysql_native_password
