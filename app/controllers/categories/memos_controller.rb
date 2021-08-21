@@ -32,7 +32,7 @@ class Categories::MemosController < ApplicationController
   def destroy
     @memo = current_user.memos.find(params[:id])
     @memo.destroy!
-    redirect_to @memo.categoy
+    redirect_to @memo.category
   end
 
   private

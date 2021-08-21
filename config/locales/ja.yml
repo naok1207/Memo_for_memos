@@ -3,10 +3,52 @@ ja:
   app_name_initial: MFM
   activerecord:
     models:
+      bookmark:
+      category:
+      memo:
+      tag:
+      user:
     attributes:
+      bookmark:
+      category:
+        name: カテゴリ名
+      memo:
+        title: タイトル
+        body: 内容
+        status: 状態設定
+        public_status: 公開設定
+      memo/status:
+          incomplete: 未完成
+          complete: 完成
+      memo/public_status:
+          unpublised: 未公開
+          limited_release: 限定公開
+          whole_release: 公開
+      tag:
+        name: 名前
+      user:
+        username: ユーザ名
+        email: メールアドレス
+        avatar:
+        introduction: 自己紹介
+        password: パスワード
+        password_confirmation: パスワード(確認)
   attributes:
     created_at: 作成日時
     updated_at: 更新日時
+  helpers:
+    submit:
+      create: 追加
+      update: 更新
+      submit: 保存
+      search:
+        create: 検索
+      category:
+        create: カテゴリ追加
+        update: カテゴリ名変更
+      memo:
+        create: メモ作成
+      user:
   date:
     abbr_day_names:
       - 日
@@ -17,13 +59,10 @@ ja:
       - 金
       - 土
   bookmarks:
-    show:
-      title: ブックマーク
+    show: ブックマーク
   categories:
-    index:
-      title: カテゴリ一覧
-    show:
-      title: カテゴリ詳細
+    index: カテゴリ一覧
+    show: カテゴリ詳細
     memos:
       show: メモ詳細
   memos:
@@ -52,3 +91,22 @@ ja:
     tags:
       index: ユーザタグ一覧
       show: ユーザタグ詳細
+  search:
+    submit: 検索
+  user_settings:
+    profile: プロフィール編集
+    account: アカウント編集
+    avatar:
+      upload: 変更
+      delete: 削除
+      cancel: キャンセル
+  cancel: キャンセル
+  login:
+    path: ログイン
+    key: ユーザ名またはメールアドレス
+    remember: ログインを保持する
+    password: パスワード
+    submit: ログイン
+  signup:
+    path: 新規登録
+    submit: 新規登録

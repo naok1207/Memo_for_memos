@@ -1,14 +1,14 @@
 .d-flex.vh-90.justify-content-center.align-items-center
   = form_with url: login_path, local: true, class: 'auth-form neo ' do |f|
     .form-group
-      = f.label :login, 'username or email'
+      = f.label :login, t('login.key')
       = f.text_field :login, class: 'neo-sink'
     .form-group
-      = f.label :password
+      = f.label :password, t('login.password')
       = f.password_field :password, class: 'neo-sink'
     .form-group
-      = f.label :remember
-      = f.check_box :remember, class: 'neo neo-btn'
-    = f.submit 'Log in', class: 'neo neo-btn'
+      = f.check_box :remember, class: 'neo neo-btn me-3'
+      = f.label :remember, t('login.remember')
+    = f.submit t('login.submit'), class: 'neo neo-btn'
 
-    = link_to 'sign up', signup_path, class: "auth-link"
+    = link_to t('signup.path'), signup_path, class: "auth-link"

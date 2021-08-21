@@ -15,7 +15,7 @@
       = f.label :password_confirmation
       = f.password_field :password_confirmation, class: 'neo-sink'
     - if new
-      = f.submit 'Sign up', class: 'neo neo-btn'
-      = link_to 'log in', login_path, class: "auth-link"
+      = f.submit t('signup.submit'), class: 'neo neo-btn'
+      = link_to t('login.path'), login_path, class: "auth-link"
     - else
-      = f.submit 'update', class: 'neo neo-btn'
+      = f.submit class: 'neo neo-btn'
