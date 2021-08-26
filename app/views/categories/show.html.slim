@@ -17,7 +17,7 @@
         = image_pack_tag "media/images/icon-add-file.svg", class: "categories-svg", size: "20x20"
       li
         #search_content_category_form
-          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path, category: @category }
+          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path, category: @category, keyword: @keyword }
       li
         #category-show-form
 

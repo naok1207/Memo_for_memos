@@ -24,7 +24,7 @@
           = render 'users/calender'
   .user-main-container.neo
     #search_content_user_form.d-inline-block
-      = render partial: 'searches/contents/form', locals: { url: searches_contents_users_path, user: @user }
+      = render partial: 'searches/contents/form', locals: { url: searches_contents_users_path, user: @user, keyword: @keyword }
     .content-list
       .content-list-header
         .content-list-image.neo

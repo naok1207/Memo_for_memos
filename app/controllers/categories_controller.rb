@@ -4,13 +4,27 @@ class CategoriesController < ApplicationController
   before_action :set_search_content_form, only: %i[index show]
 
   def index
-    @categories = current_user.categories.main.name_asc
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      search_content = SearchContent.new(key_word: @keyword)
+      @categories = search_content.own_category_search(current_user, nil)
+      @memos = search_content.own_memo_search(current_user, nil)
+    else
+      @categories = current_user.categories.main.name_asc
+    end
   end
 
   def show
     @category = current_user.categories.find_by!(name: params[:name])
-    @categories = @category.children
-    @memos = @category.memos.title_asc
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      search_content = SearchContent.new(key_word: @keyword)
+      @categories = search_content.own_category_search(current_user, @category)
+      @memos = search_content.own_memo_search(current_user, @category)
+    else
+      @categories = @category.children
+      @memos = @category.memos.title_asc
+    end
     add_category_name
   rescue StandardError
     redirect_to categories_path, alert: "not found #{params[:name]} category"

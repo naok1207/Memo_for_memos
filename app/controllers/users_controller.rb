@@ -7,7 +7,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by!(username: params[:username])
+
     @memos = @user == current_user ? @user.memos.order(updated_at: :asc) : @user.memos.complete.whole_release.order(updated_at: :asc)
+    @memos =
+      if params[:keyword].present?
+        @keyword = params[:keyword]
+        search_content = SearchContent.new(key_word: @keyword)
+        search_content.user_memo_search(@user).title_asc
+      else
+        if @user == current_user
+          @user.memos.order(updated_at: :asc)
+        else
+          @user.memos.complete.whole_release.order(updated_at: :asc)
+        end
+      end
     add_category_name
   end
 

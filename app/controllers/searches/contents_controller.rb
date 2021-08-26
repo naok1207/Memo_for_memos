@@ -5,6 +5,7 @@ class Searches::ContentsController < ApplicationController
 
   def set_search_content
     @search_content = SearchContent.new(search_content_params)
+    @keyword = search_content_params[:key_word]
   end
 
   def search_content_params

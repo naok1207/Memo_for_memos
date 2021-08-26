@@ -1,5 +1,5 @@
 = form_with model: @search_content, url: url, local: false, method: :get, class: 'neo', id: 'search-content-form' do |f|
-  = f.text_field :key_word, class: 'neo-sink'
+  = f.text_field :key_word, class: 'neo-sink', value: keyword
   - if defined? user
     = f.hidden_field :username, name: :username, value: user.username
   - if defined? category
