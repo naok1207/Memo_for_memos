@@ -3,23 +3,19 @@ class UsersController < ApplicationController
   before_action :generate_calender, only: :show
   before_action :already_logged_in, only: :new
   before_action :set_search_content_form, only: :show
+  before_action :set_user, only: :show
   layout 'layouts/basic_auth', only: %i[new create edit]
 
   def show
-    @user = User.find_by!(username: params[:username])
-
-    @memos = @user == current_user ? @user.memos.order(updated_at: :asc) : @user.memos.complete.whole_release.order(updated_at: :asc)
     @memos =
       if params[:keyword].present?
         @keyword = params[:keyword]
         search_content = SearchContent.new(key_word: @keyword)
         search_content.user_memo_search(@user).title_asc
+      elsif @user == current_user
+        @user.memos.order(updated_at: :asc)
       else
-        if @user == current_user
-          @user.memos.order(updated_at: :asc)
-        else
-          @user.memos.complete.whole_release.order(updated_at: :asc)
-        end
+        @user.memos.complete.whole_release.order(updated_at: :asc)
       end
     add_category_name
   end
@@ -45,6 +41,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find_by!(username: params[:username])
+  end
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :introduction)

@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :require_login
   before_action :generate_calender, only: %i[index show update]
   before_action :set_search_content_form, only: %i[index show]
+  before_action :set_category, only: %i[show edit update destroy]
 
   def index
     if params[:keyword].present?
@@ -15,7 +16,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = current_user.categories.find_by!(name: params[:name])
     if params[:keyword].present?
       @keyword = params[:keyword]
       search_content = SearchContent.new(key_word: @keyword)
@@ -26,8 +26,6 @@ class CategoriesController < ApplicationController
       @memos = @category.memos.title_asc
     end
     add_category_name
-  rescue StandardError
-    redirect_to categories_path, alert: "not found #{params[:name]} category"
   end
 
   def new
@@ -51,29 +49,24 @@ class CategoriesController < ApplicationController
                   end
   end
 
-  def edit
-    @category = current_user.categories.find_by!(name: params[:name])
-  end
+  def edit; end
 
   def update
-    @category = current_user.categories.find_by!(name: params[:name])
     redirect_to @category if @category.update(category_params)
   end
 
   def destroy
-    @category = current_user.categories.find_by!(name: params[:name])
     @category.children_destroy_all
     @category.memos.destroy_all
     @category.destroy!
     redirect_to @category.parent.presence || categories_path
   end
 
-  def search
-    category = current_user.categories.find_by(name: params[:category_name])
-    ContentSearchForm.own_search(params[:key_word], category)
-  end
-
   private
+
+  def set_category
+    @category = current_user.categories.find_by!(name: params[:name])
+  end
 
   def category_params
     params.require(:category).permit(:name, :parent_id)
