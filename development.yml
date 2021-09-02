@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: .
+      # dockerfile: .
     environment:
       - EDITOR=vim
       - REDIS_URL=redis://redis:6379
