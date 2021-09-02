@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     resources :memos, only: %i[create]
   end
 
+  resource :admin, controller: :admin, only: :show
+
   # ユーザ関連
   resources :users, param: :username, path: '/', only: %i[show create destroy] do
     resources :tags, param: :name, controller: 'users/tags', only: %i[index show]
