@@ -1,10 +1,16 @@
 .d-flex.h-100.w-100
   #memos.memos.main-container
     ul.memos-list
-      li= render partial: 'searches/contents/form', locals: { url: searches_contents_memos_path }
+      li= render partial: 'searches/contents/form', locals: { url: searches_contents_memos_path, keyword: @keyword }
     .neo.memo-container
       .content-list.h-100
         .content-list-header
           .content-list-image.neo
             = image_pack_tag "media/images/icon-search.svg", class: "content-list-image-svg", size: "20x20"
         #memos-list.neo-card-list
+          - if @memos.present?
+            = render partial: 'searches/memo', collection: @memos
+            .dummy
+            .dummy
+            .dummy
+            .dummy

@@ -1,4 +1,15 @@
 |
-  $('#categories-list').html(" #{ j render partial: 'categories/category', collection: @categories } ");
-  $('#memos-list').html(" #{ j render partial: 'categories/memos/memo', collection: @memos } ");
+  $('#categories-list-items').html(" #{ j render partial: 'categories/category', collection: @categories } ");
+  $('#memos-list-items').html(" #{ j render partial: 'categories/memos/memo', collection: @memos } ");
   $('#memos-list').removeClass('d-none');
+
+- if @keyword.present?
+  - if @category.present?
+    |
+      history.replaceState('','',`/categories/#{@category.name}?keyword=#{@keyword}`);
+  - else
+    |
+      history.replaceState('','',`/categories?keyword=#{@keyword}`);
+- else
+  |
+    history.replaceState('','',`/categories`);

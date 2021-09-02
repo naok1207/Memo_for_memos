@@ -7,17 +7,33 @@
         = image_pack_tag "media/images/icon-folder-new.svg", class: "categories-svg", size: "20x20"
       li.categories-list-item
         #own_memo_search_form
-          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path }
+          = render partial: 'searches/contents/form', locals: { url: searches_contents_categories_path, keyword: @keyword }
       li
         #category-show-form
     .neo.category-container
       .content-list
-        #categories-list.neo-card-list
-          .content-list-header
-            .content-list-image.neo
-              = image_pack_tag "media/images/icon-folder.svg", class: "content-list-image-svg", size: "20x20"
-          = render @categories
-        #memos-list.neo-card-list.d-none
-          .content-list-header
-            .content-list-image.neo
-              = image_pack_tag "media/images/icon-file.svg", class: "content-list-image-svg", size: "20x20"
+        - if @keyword.present?
+          #categories-list.neo-card-list
+            .content-list-header
+              .content-list-image.neo
+                = image_pack_tag "media/images/icon-folder.svg", class: "content-list-image-svg", size: "20x20"
+            #categories-list-items
+              = render @categories
+          #memos-list.neo-card-list
+            .content-list-header
+              .content-list-image.neo
+                = image_pack_tag "media/images/icon-file.svg", class: "content-list-image-svg", size: "20x20"
+            #memos-list-items
+              = render partial: 'categories/memos/memo', collection: @memos
+        - else
+          #categories-list.neo-card-list
+            .content-list-header
+              .content-list-image.neo
+                = image_pack_tag "media/images/icon-folder.svg", class: "content-list-image-svg", size: "20x20"
+            #categories-list-items
+              = render @categories
+          #memos-list.neo-card-list.d-none
+            .content-list-header
+              .content-list-image.neo
+                = image_pack_tag "media/images/icon-file.svg", class: "content-list-image-svg", size: "20x20"
+            #memos-list-items

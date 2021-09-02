@@ -1,3 +1,10 @@
 |
-  $('#memos-list').html(" #{ j render partial: 'searches/memo', collection: @memos } ")
-  $('#memos-list').append('<div class="dummy"></div><div class="dummy"></div><div class="dummy"></div>')
+  $('#memos-list').html(" #{ j render partial: 'searches/memo', collection: @memos } ");
+  $('#memos-list').append('<div class="dummy"></div><div class="dummy"></div><div class="dummy"></div>');
+
+- if @keyword.present?
+  |
+    history.replaceState('','',`/searches?keyword=#{@keyword}`);
+- else
+  |
+    history.replaceState('','',`/searches`);

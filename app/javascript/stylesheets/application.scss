@@ -625,3 +625,12 @@ body {
     transform: rotate(180deg) translate(-10px ,-0.6rem);
   }
 }
+
+#categories-list-items, #memos-list-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  max-height: 100%;
+}
