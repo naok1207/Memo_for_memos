@@ -1,9 +1,7 @@
 version: '3.8'
 services:
   app:
-    build:
-      context: .
-      dockerfile: .
+    build: .
     environment:
       - EDITOR=vim
       - REDIS_URL=redis://redis:6379
