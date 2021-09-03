@@ -46,6 +46,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_memos, through: :bookmarks, source: :memo
 
+  enum role: { normal: 0, admin: 1 }
+
   def to_param
     username
   end

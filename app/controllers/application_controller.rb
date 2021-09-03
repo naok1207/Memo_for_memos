@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :except_admin
+
   include Calender
 
   def not_authenticated
@@ -17,5 +19,10 @@ class ApplicationController < ActionController::Base
     @user = current_user if @user.blank?
     categories = @user.categories.pluck(:id, :name)
     @memos = @memos.each { |memo| memo.category_name = categories.find { |category| category[0] == memo.category_id }[1] }
+  end
+
+  def except_admin
+    return if current_user.blank?
+    redirect_to admin_path if current_user.admin?
   end
 end

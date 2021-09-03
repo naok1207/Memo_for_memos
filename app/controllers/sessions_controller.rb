@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :except_admin, only: :destroy
   before_action :require_login, only: :destroy
   before_action :already_logged_in, only: :new
   layout 'layouts/basic_auth'
